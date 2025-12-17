@@ -1,0 +1,7 @@
+command,expected_result,description
+status,success,Visualizza stato party
+p1 atk,success,Player 1 attacca
+p2 heal,success,Player 2 si cura
+p1 heal 50,success,Player 1 si cura di 50 HP
+help,success,Mostra aiuto
+quit,success,Esce dal gioco
