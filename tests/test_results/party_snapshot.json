@@ -1,0 +1,21 @@
+{
+  "timestamp": "2026-01-28T00:02:04.527810",
+  "party": {
+    "characters": [
+      {
+        "name": "TestHero1",
+        "class": "guerriero",
+        "hp": 90,
+        "max_hp": 120,
+        "is_alive": true
+      },
+      {
+        "name": "TestHero2",
+        "class": "mago",
+        "hp": 80,
+        "max_hp": 80,
+        "is_alive": true
+      }
+    ]
+  }
+}

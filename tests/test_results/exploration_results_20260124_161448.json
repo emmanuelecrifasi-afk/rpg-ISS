@@ -1,0 +1,166 @@
+{
+  "test_name": "complete_dungeon_exploration",
+  "timestamp": "2026-01-24T16:14:48.731737",
+  "dungeon": "Test Dungeon",
+  "start_position": [
+    0,
+    0
+  ],
+  "movements": [
+    {
+      "step": 1,
+      "command": "d",
+      "position_before": [
+        0,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": true,
+      "message": "Ti sei mosso da (0, 0) a (1, 0)",
+      "trigger": null
+    },
+    {
+      "step": 2,
+      "command": "s",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    },
+    {
+      "step": 3,
+      "command": "s",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    },
+    {
+      "step": 4,
+      "command": "d",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    },
+    {
+      "step": 5,
+      "command": "s",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    },
+    {
+      "step": 6,
+      "command": "d",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    },
+    {
+      "step": 7,
+      "command": "d",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    },
+    {
+      "step": 8,
+      "command": "w",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🚫 Non puoi andare oltre i confini della mappa!",
+      "trigger": null
+    },
+    {
+      "step": 9,
+      "command": "w",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🚫 Non puoi andare oltre i confini della mappa!",
+      "trigger": null
+    },
+    {
+      "step": 10,
+      "command": "d",
+      "position_before": [
+        1,
+        0
+      ],
+      "position_after": [
+        1,
+        0
+      ],
+      "success": false,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "trigger": null
+    }
+  ],
+  "final_position": [
+    1,
+    0
+  ],
+  "total_successful_moves": 1
+}

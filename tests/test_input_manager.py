@@ -26,9 +26,9 @@ class TestInputManager:
         assert cmd.target is None
         assert cmd.args == []
 
-    def test_parse_status_alias_s(self, manager):
-        """Test alias 's' per status"""
-        cmd = manager.parse("s")
+    def test_parse_status_alias_st(self, manager):
+        """Test alias 'st' per status"""
+        cmd = manager.parse("st")
         assert cmd is not None
         assert cmd.action == "status"
 
@@ -135,5 +135,5 @@ class TestInputManager:
         help_text = manager.get_help_text()
         assert "COMANDI DISPONIBILI" in help_text
         assert "status" in help_text
-        assert "atk" in help_text
+        assert "Attacco Fisico" in help_text
         assert "quit" in help_text

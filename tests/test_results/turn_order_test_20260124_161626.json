@@ -1,0 +1,30 @@
+{
+  "test_name": "turn_order",
+  "timestamp": "2026-01-24T16:16:26.358897",
+  "turn_sequence": [
+    {
+      "name": "Aragorn",
+      "is_player": true
+    },
+    {
+      "name": "Gandalf",
+      "is_player": true
+    },
+    {
+      "name": "Goblin",
+      "is_player": false
+    },
+    {
+      "name": "Aragorn",
+      "is_player": true
+    },
+    {
+      "name": "Gandalf",
+      "is_player": true
+    },
+    {
+      "name": "Goblin",
+      "is_player": false
+    }
+  ]
+}

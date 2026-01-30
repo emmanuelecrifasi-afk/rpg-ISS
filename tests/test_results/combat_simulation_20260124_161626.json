@@ -1,0 +1,123 @@
+{
+  "test_name": "full_battle_simulation",
+  "timestamp": "2026-01-24T16:16:26.337619",
+  "initial_state": {
+    "round": 1,
+    "enemy": {
+      "name": "Orco (Lv.2)",
+      "hp": 78,
+      "max_hp": 78,
+      "alive": true
+    },
+    "players": [
+      {
+        "name": "Aragorn",
+        "hp": 120,
+        "max_hp": 120,
+        "alive": true
+      },
+      {
+        "name": "Gandalf",
+        "hp": 80,
+        "max_hp": 80,
+        "alive": true
+      }
+    ],
+    "active": false
+  },
+  "actions": [
+    {
+      "round": 1,
+      "turn": 1,
+      "actor": "Aragorn",
+      "is_player": true,
+      "action": {
+        "type": "attack",
+        "target": "Orco",
+        "value": 34,
+        "message": "⚔️  Aragorn attacca Orco per 34 danni!"
+      }
+    },
+    {
+      "round": 1,
+      "turn": 2,
+      "actor": "Gandalf",
+      "is_player": true,
+      "action": {
+        "type": "attack",
+        "target": "Orco",
+        "value": 10,
+        "message": "⚔️  Gandalf attacca Orco per 10 danni!"
+      }
+    },
+    {
+      "round": 1,
+      "turn": 3,
+      "actor": "Orco",
+      "is_player": false,
+      "action": {
+        "type": "attack",
+        "target": "Gandalf",
+        "value": 11,
+        "message": "⚔️  Orco attacca Gandalf per 11 danni!"
+      }
+    },
+    {
+      "round": 2,
+      "turn": 4,
+      "actor": "Aragorn",
+      "is_player": true,
+      "action": {
+        "type": "attack",
+        "target": "Orco",
+        "value": 30,
+        "message": "⚔️  Aragorn attacca Orco per 30 danni!"
+      }
+    },
+    {
+      "round": 2,
+      "turn": 5,
+      "actor": "Gandalf",
+      "is_player": true,
+      "action": {
+        "type": "attack",
+        "target": "Orco",
+        "value": 4,
+        "message": "⚔️  Gandalf attacca Orco per 4 danni!\n💀 Orco è stato sconfitto!"
+      }
+    }
+  ],
+  "rounds": [],
+  "battle_result": {
+    "victory": true,
+    "survivors": 2,
+    "enemy_defeated": true,
+    "rounds": 2,
+    "game_over": false
+  },
+  "final_state": {
+    "round": 2,
+    "enemy": {
+      "name": "Orco (Lv.2)",
+      "hp": 0,
+      "max_hp": 78,
+      "alive": false
+    },
+    "players": [
+      {
+        "name": "Aragorn",
+        "hp": 120,
+        "max_hp": 120,
+        "alive": true
+      },
+      {
+        "name": "Gandalf",
+        "hp": 69,
+        "max_hp": 80,
+        "alive": true
+      }
+    ],
+    "active": false
+  },
+  "total_turns": 5
+}

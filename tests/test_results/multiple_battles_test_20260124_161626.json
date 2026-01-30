@@ -1,0 +1,27 @@
+{
+  "test_name": "multiple_battles",
+  "timestamp": "2026-01-24T16:16:26.362010",
+  "battles": [
+    {
+      "battle_number": 1,
+      "enemy_type": "dragon",
+      "enemy_level": 2,
+      "turns": 10,
+      "result": "victory"
+    },
+    {
+      "battle_number": 2,
+      "enemy_type": "dragon",
+      "enemy_level": 2,
+      "turns": 13,
+      "result": "victory"
+    },
+    {
+      "battle_number": 3,
+      "enemy_type": "skeleton",
+      "enemy_level": 1,
+      "turns": 2,
+      "result": "victory"
+    }
+  ]
+}

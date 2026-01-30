@@ -1,0 +1,27 @@
+{
+  "test_name": "multiple_battles",
+  "timestamp": "2026-01-26T21:05:42.569195",
+  "battles": [
+    {
+      "battle_number": 1,
+      "enemy_type": "orc",
+      "enemy_level": 1,
+      "turns": 4,
+      "result": "victory"
+    },
+    {
+      "battle_number": 2,
+      "enemy_type": "troll",
+      "enemy_level": 1,
+      "turns": 5,
+      "result": "victory"
+    },
+    {
+      "battle_number": 3,
+      "enemy_type": "goblin",
+      "enemy_level": 1,
+      "turns": 2,
+      "result": "victory"
+    }
+  ]
+}

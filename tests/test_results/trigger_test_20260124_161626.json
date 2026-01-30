@@ -1,0 +1,59 @@
+{
+  "test_name": "trigger_detection",
+  "timestamp": "2026-01-24T16:16:26.402555",
+  "trigger_cells": [
+    {
+      "position": [
+        4,
+        0
+      ],
+      "type": "EXIT"
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "type": "DANGER"
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "type": "TREASURE"
+    }
+  ],
+  "detected_triggers": [
+    {
+      "position": [
+        4,
+        0
+      ],
+      "expected_type": "EXIT",
+      "trigger": "EXIT",
+      "message": "🚪 Hai raggiunto l'uscita!",
+      "matched": true
+    },
+    {
+      "position": [
+        2,
+        2
+      ],
+      "expected_type": "DANGER",
+      "trigger": "DANGER",
+      "message": "⚔️ PERICOLO! Hai incontrato un nemico!",
+      "matched": true
+    },
+    {
+      "position": [
+        3,
+        4
+      ],
+      "expected_type": "TREASURE",
+      "trigger": "TREASURE",
+      "message": "💎 Hai trovato un tesoro!",
+      "matched": true
+    }
+  ]
+}

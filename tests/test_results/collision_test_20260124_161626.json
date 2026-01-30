@@ -1,0 +1,51 @@
+{
+  "test_name": "collision_detection",
+  "timestamp": "2026-01-24T16:16:26.398419",
+  "tests": [
+    {
+      "from": [
+        0,
+        0
+      ],
+      "command": "w",
+      "expected_block": "OUT_OF_BOUNDS",
+      "blocked": true,
+      "message": "🚫 Non puoi andare oltre i confini della mappa!",
+      "passed": true
+    },
+    {
+      "from": [
+        0,
+        0
+      ],
+      "command": "a",
+      "expected_block": "OUT_OF_BOUNDS",
+      "blocked": true,
+      "message": "🚫 Non puoi andare oltre i confini della mappa!",
+      "passed": true
+    },
+    {
+      "from": [
+        1,
+        0
+      ],
+      "command": "w",
+      "expected_block": "OUT_OF_BOUNDS",
+      "blocked": true,
+      "message": "🚫 Non puoi andare oltre i confini della mappa!",
+      "passed": true
+    },
+    {
+      "from": [
+        1,
+        0
+      ],
+      "command": "d",
+      "expected_block": "WALL",
+      "blocked": true,
+      "message": "🧱 C'è un muro! Non puoi passare.",
+      "passed": true
+    }
+  ],
+  "all_passed": true
+}

@@ -1,0 +1,8 @@
+{
+  "test_name": "victory_condition",
+  "timestamp": "2026-01-28T00:02:04.442567",
+  "enemy_initial_hp": 10,
+  "battle_ended": true,
+  "victory": true,
+  "enemy_defeated": true
+}

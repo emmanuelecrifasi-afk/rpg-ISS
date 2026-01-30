@@ -1,0 +1,27 @@
+{
+  "test_name": "enemy_ai_targeting",
+  "timestamp": "2026-01-24T16:14:48.685776",
+  "targets_hit": [
+    "Gandalf",
+    "Aragorn",
+    "Gandalf",
+    "Gandalf",
+    "Aragorn",
+    "Gandalf",
+    "Gandalf",
+    "Gandalf",
+    "Gandalf",
+    "Aragorn",
+    "Aragorn",
+    "Aragorn",
+    "Aragorn",
+    "Aragorn",
+    "Aragorn",
+    "Aragorn"
+  ],
+  "unique_targets": [
+    "Gandalf",
+    "Aragorn"
+  ],
+  "target_variety": 2
+}

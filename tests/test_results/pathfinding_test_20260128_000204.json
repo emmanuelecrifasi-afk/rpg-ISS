@@ -1,0 +1,117 @@
+{
+  "test_name": "pathfinding_to_exit",
+  "timestamp": "2026-01-28T00:02:04.597826",
+  "start": [
+    0,
+    0
+  ],
+  "exit_position": [
+    4,
+    0
+  ],
+  "path_attempted": [
+    "d",
+    "s",
+    "s",
+    "s",
+    "d",
+    "d",
+    "d",
+    "w",
+    "w",
+    "w"
+  ],
+  "movements": [
+    {
+      "command": "d",
+      "success": true,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "s",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "s",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "s",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "d",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "d",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "d",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "w",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "w",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    },
+    {
+      "command": "w",
+      "success": false,
+      "position": [
+        1,
+        0
+      ],
+      "reached_exit": false
+    }
+  ],
+  "reached_exit": false
+}

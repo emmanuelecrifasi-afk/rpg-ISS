@@ -1,0 +1,53 @@
+{
+  "test_name": "inventory_usage_combat",
+  "timestamp": "2026-01-26T21:05:42.658751",
+  "initial_inventory": {
+    "items": {
+      "health_potion": {
+        "quantity": 3,
+        "name": "Pozione di Vita"
+      },
+      "mana_potion": {
+        "quantity": 2,
+        "name": "Pozione di Mana"
+      },
+      "bomb": {
+        "quantity": 1,
+        "name": "Bomba"
+      }
+    },
+    "max_slots": 20,
+    "unique_items": 3,
+    "total_items": 6
+  },
+  "actions": [
+    {
+      "action": "use_health_potion",
+      "success": true,
+      "warrior_hp_after": 100,
+      "inventory_after": 2
+    },
+    {
+      "action": "use_bomb",
+      "success": true,
+      "enemy_hp_before": 40,
+      "enemy_hp_after": 0,
+      "inventory_after": 0
+    }
+  ],
+  "final_inventory": {
+    "items": {
+      "health_potion": {
+        "quantity": 2,
+        "name": "Pozione di Vita"
+      },
+      "mana_potion": {
+        "quantity": 2,
+        "name": "Pozione di Mana"
+      }
+    },
+    "max_slots": 20,
+    "unique_items": 2,
+    "total_items": 4
+  }
+}

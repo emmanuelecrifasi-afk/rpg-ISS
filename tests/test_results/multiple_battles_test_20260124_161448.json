@@ -1,0 +1,27 @@
+{
+  "test_name": "multiple_battles",
+  "timestamp": "2026-01-24T16:14:48.697325",
+  "battles": [
+    {
+      "battle_number": 1,
+      "enemy_type": "skeleton",
+      "enemy_level": 2,
+      "turns": 4,
+      "result": "victory"
+    },
+    {
+      "battle_number": 2,
+      "enemy_type": "skeleton",
+      "enemy_level": 2,
+      "turns": 2,
+      "result": "victory"
+    },
+    {
+      "battle_number": 3,
+      "enemy_type": "goblin",
+      "enemy_level": 2,
+      "turns": 4,
+      "result": "victory"
+    }
+  ]
+}

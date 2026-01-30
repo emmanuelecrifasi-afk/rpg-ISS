@@ -1,0 +1,47 @@
+{
+  "test_name": "shared_inventory",
+  "timestamp": "2026-01-26T21:05:42.671742",
+  "initial_state": {
+    "items": {
+      "health_potion": {
+        "quantity": 3,
+        "name": "Pozione di Vita"
+      },
+      "mana_potion": {
+        "quantity": 2,
+        "name": "Pozione di Mana"
+      },
+      "bomb": {
+        "quantity": 1,
+        "name": "Bomba"
+      }
+    },
+    "max_slots": 20,
+    "unique_items": 3,
+    "total_items": 6
+  },
+  "test": {
+    "initial_count": 3,
+    "count_after_warrior_use": 2,
+    "shared": true
+  },
+  "final_state": {
+    "items": {
+      "health_potion": {
+        "quantity": 2,
+        "name": "Pozione di Vita"
+      },
+      "mana_potion": {
+        "quantity": 2,
+        "name": "Pozione di Mana"
+      },
+      "bomb": {
+        "quantity": 1,
+        "name": "Bomba"
+      }
+    },
+    "max_slots": 20,
+    "unique_items": 3,
+    "total_items": 5
+  }
+}
