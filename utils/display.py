@@ -7,7 +7,7 @@ from models.character import Character
 
 
 def clear_screen():
-    """Pulisce lo schermo"""
+    """Pulisce lo schermo (simulato con newline)"""
     print("\n" * 2)
 
 
@@ -24,11 +24,11 @@ def print_party_status(party: Party):
         party: Oggetto Party da visualizzare
     """
     print_separator("=")
-    print("STATO DEL PARTY")
+    print("📊 STATO DEL PARTY")
     print_separator("=")
     
     if len(party) == 0:
-        print("Il party è vuoto!")
+        print("⚠️  Il party è vuoto!")
     else:
         print(party.get_party_status())
         print()
@@ -95,7 +95,7 @@ def print_heal_message(healer: str, amount: int):
         healer: Nome del personaggio che si cura
         amount: HP recuperati
     """
-    print(f"{healer} si cura di {amount} HP!")
+    print(f"💚 {healer} si cura di {amount} HP!")
 
 
 def print_death_message(character_name: str):
@@ -111,9 +111,11 @@ def print_death_message(character_name: str):
 def print_welcome():
     """Stampa il messaggio di benvenuto"""
     print("""
-    ╔════════════════════════════════════╗
-    ║     The Last Dream - SPRINT: 0     ║
-    ╚════════════════════════════════════╝
+    ╔════════════════════════════════════════╗
+    ║     🎮 RPG GAME - SPRINT 0 & 1 🎮     ║
+    ║   Sistema di combattimento testuale   ║
+    ║        ed esplorazione dungeons       ║
+    ╚════════════════════════════════════════╝
     """)
 
 
@@ -121,6 +123,6 @@ def print_goodbye():
     """Stampa il messaggio di uscita"""
     print()
     print_separator("=")
-    print("     Grazie per aver giocato!")
-    print("     Arrivederci!")
+    print("👋 Grazie per aver giocato!")
+    print("   Arrivederci!")
     print_separator("=")
