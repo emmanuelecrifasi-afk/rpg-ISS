@@ -1,6 +1,6 @@
 """
-RPG Game for ISS - The Last Dream
-Sprint: 0 Fondamenta & Architettura Dati
+RPG Game - Entry Point
+Sprint 0: Fondamenta & Architettura Dati
 """
 
 from core.game_engine import GameEngine

@@ -12,30 +12,55 @@ class Character:
             'name': 'Guerriero',
             'hp': 120,
             'max_hp': 120,
+            'mp': 20,
+            'max_mp': 20,
+            'atk_bonus': 10,
+            'def_bonus': 5,
+            'mag_bonus': 0,
             'description': 'Forte e resistente, specializzato nel combattimento corpo a corpo'
         },
         'mago': {
             'name': 'Mago',
             'hp': 80,
             'max_hp': 80,
+            'mp': 50,
+            'max_mp': 50,
+            'atk_bonus': 0,
+            'def_bonus': 0,
+            'mag_bonus': 15,
             'description': 'Fragile ma potente, maestro delle arti arcane'
         },
         'ladro': {
             'name': 'Ladro',
             'hp': 90,
             'max_hp': 90,
+            'mp': 30,
+            'max_mp': 30,
+            'atk_bonus': 7,
+            'def_bonus': 2,
+            'mag_bonus': 0,
             'description': 'Agile e veloce, esperto in attacchi furtivi'
         },
         'paladino': {
             'name': 'Paladino',
             'hp': 110,
             'max_hp': 110,
+            'mp': 40,
+            'max_mp': 40,
+            'atk_bonus': 5,
+            'def_bonus': 7,
+            'mag_bonus': 5,
             'description': 'Bilanciato tra attacco e difesa, può curare gli alleati'
         },
         'ranger': {
             'name': 'Ranger',
             'hp': 95,
             'max_hp': 95,
+            'mp': 35,
+            'max_mp': 35,
+            'atk_bonus': 6,
+            'def_bonus': 3,
+            'mag_bonus': 3,
             'description': 'Arciere esperto, ottimo per attacchi a distanza'
         }
     }
@@ -47,8 +72,8 @@ class Character:
         Args:
             name: Nome del personaggio
             character_class: Classe del personaggio (guerriero, mago, etc.)
-            hp: Punti vita attuali (Debugging, usa quello della classe se non specificato)
-            max_hp: Punti vita massimi (Debugging, usa quello della classe se non specificato)
+            hp: Punti vita attuali (opzionale, usa quello della classe se non specificato)
+            max_hp: Punti vita massimi (opzionale, usa quello della classe se non specificato)
         """
         self.name = name
         self.character_class = character_class.lower()
@@ -58,9 +83,19 @@ class Character:
             class_data = self.CLASSES[character_class.lower()]
             self.hp = hp if hp is not None else class_data['hp']
             self.max_hp = max_hp if max_hp is not None else class_data['max_hp']
+            self.mp = class_data['mp']
+            self.max_mp = class_data['max_mp']
+            self.atk_bonus = class_data['atk_bonus']
+            self.def_bonus = class_data['def_bonus']
+            self.mag_bonus = class_data['mag_bonus']
         else:
             self.hp = hp if hp is not None else 100
             self.max_hp = max_hp if max_hp is not None else 100
+            self.mp = 30
+            self.max_mp = 30
+            self.atk_bonus = 0
+            self.def_bonus = 0
+            self.mag_bonus = 0
         
         self.is_alive = True
     
@@ -100,6 +135,61 @@ class Character:
         self.hp = min(self.hp + amount, self.max_hp)
         return self.hp - old_hp
     
+    def restore_mp(self, amount: int) -> int:
+        """
+        Ripristina i MP del personaggio
+        
+        Args:
+            amount: Quantità di MP da ripristinare
+            
+        Returns:
+            MP effettivamente recuperati
+        """
+        if not self.is_alive:
+            return 0
+        
+        old_mp = self.mp
+        self.mp = min(self.mp + amount, self.max_mp)
+        return self.mp - old_mp
+    
+    def use_mp(self, amount: int) -> bool:
+        """
+        Usa MP per un'abilità
+        
+        Args:
+            amount: Quantità di MP da usare
+            
+        Returns:
+            True se i MP sono sufficienti, False altrimenti
+        """
+        if self.mp < amount:
+            return False
+        
+        self.mp -= amount
+        return True
+    
+    def calculate_physical_damage(self) -> int:
+        """
+        Calcola il danno fisico base del personaggio
+        
+        Returns:
+            Danno fisico (include bonus ATK)
+        """
+        import random
+        base_damage = random.randint(10, 25)
+        return base_damage + self.atk_bonus
+    
+    def calculate_magic_damage(self) -> int:
+        """
+        Calcola il danno magico base del personaggio
+        
+        Returns:
+            Danno magico (include bonus MAG)
+        """
+        import random
+        base_damage = random.randint(15, 30)
+        return base_damage + self.mag_bonus
+    
     def get_hp_percentage(self) -> float:
         """Ritorna la percentuale di HP rimanenti"""
         return (self.hp / self.max_hp) * 100
@@ -108,7 +198,7 @@ class Character:
         """Rappresentazione testuale del personaggio"""
         status = "✓ VIVO" if self.is_alive else "✗ KO"
         class_name = self.CLASSES.get(self.character_class, {}).get('name', self.character_class.title())
-        return f"{self.name} ({class_name}) [{self.hp}/{self.max_hp} HP] {status}"
+        return f"{self.name} ({class_name}) [{self.hp}/{self.max_hp} HP | {self.mp}/{self.max_mp} MP] {status}"
     
     def __repr__(self) -> str:
         return f"Character(name='{self.name}', class='{self.character_class}', hp={self.hp}, max_hp={self.max_hp})"
@@ -122,3 +212,20 @@ class Character:
     def get_available_classes(cls) -> list:
         """Ritorna la lista delle classi disponibili"""
         return list(cls.CLASSES.keys())
+    
+    # In character.py
+
+    def apply_victory_bonus(self):
+        """Aumenta HP e Mana massimi dopo una vittoria"""
+        hp_boost = 10
+        mp_boost = 5
+        
+        # 1. Aumenta HP (Sicuro al 100%)
+        self.max_hp += hp_boost
+        self.hp += hp_boost  
+        
+        # 2. Aumenta Mana (Controlla se esiste l'attributo per evitare crash)
+        if hasattr(self, 'mp') and hasattr(self, 'max_mp'):
+            self.max_mp += mp_boost
+            self.mp += mp_boost
+            

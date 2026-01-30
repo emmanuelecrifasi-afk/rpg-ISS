@@ -4,6 +4,7 @@ Classe Party - Gestisce un gruppo di personaggi
 
 from typing import List, Optional
 from models.character import Character
+from models.inventory import Inventory
 
 
 class Party:
@@ -17,6 +18,7 @@ class Party:
             characters: Lista di personaggi (opzionale)
         """
         self.characters: List[Character] = characters if characters else []
+        self.inventory = Inventory()  # Inventario condiviso
     
     def add_character(self, character: Character) -> None:
         """Aggiunge un personaggio al party"""
