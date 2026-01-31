@@ -1,0 +1,48 @@
+{
+  "test_name": "map_loading_navigation",
+  "timestamp": "2026-01-30T14:07:02.420866",
+  "map_file": "data\\maps\\map_01.json",
+  "map_name": "Dungeon Tutorial",
+  "map_size": {
+    "width": 5,
+    "height": 5
+  },
+  "start_position": [
+    0,
+    0
+  ],
+  "test_movements": [
+    {
+      "command": "d",
+      "success": true,
+      "position": [
+        1,
+        0
+      ]
+    },
+    {
+      "command": "s",
+      "success": false,
+      "position": [
+        1,
+        0
+      ]
+    },
+    {
+      "command": "a",
+      "success": true,
+      "position": [
+        0,
+        0
+      ]
+    },
+    {
+      "command": "w",
+      "success": false,
+      "position": [
+        0,
+        0
+      ]
+    }
+  ]
+}

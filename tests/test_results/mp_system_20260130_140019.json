@@ -1,0 +1,27 @@
+{
+  "test_name": "mp_system",
+  "timestamp": "2026-01-30T14:00:19.932262",
+  "initial_mp": 50,
+  "max_mp": 50,
+  "actions": [
+    {
+      "action": "use_mp",
+      "amount": 10,
+      "success": true,
+      "mp_after": 40
+    },
+    {
+      "action": "restore_mp",
+      "amount": 5,
+      "restored": 5,
+      "mp_after": 45
+    },
+    {
+      "action": "use_mp_insufficient",
+      "amount": 10,
+      "success": false,
+      "mp_before": 5
+    }
+  ],
+  "final_mp": 5
+}

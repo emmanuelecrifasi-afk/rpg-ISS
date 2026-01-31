@@ -73,11 +73,15 @@ class TestRenderer:
         renderer.draw_rect(150, 10, 100, 50, Color.BLUE, filled=False)
         assert True
     
-    def test_draw_world_view(self, renderer, simple_world):
+    def test_draw_world_view(self, renderer, simple_world, test_party):
         """Test rendering vista mondo"""
         renderer.clear()
         player_pos = (0, 0)
-        renderer.draw_world_view(simple_world, player_pos, offset_x=50, offset_y=50)
+        
+        # Chiamiamo la funzione passandole il 'test_party' (che prima mancava)
+        # Se la funzione viene eseguita senza errori (crash), il test passa.
+        renderer.draw_world_view(simple_world, player_pos, test_party, offset_x=50, offset_y=50)
+        
         assert True
     
     def test_draw_hp_bar(self, renderer):

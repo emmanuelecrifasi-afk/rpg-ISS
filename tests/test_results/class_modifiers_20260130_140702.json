@@ -1,0 +1,28 @@
+{
+  "test_name": "class_modifiers",
+  "timestamp": "2026-01-30T14:07:02.428387",
+  "classes": [
+    {
+      "name": "TestWarrior",
+      "class": "guerriero",
+      "hp": 120,
+      "max_hp": 120,
+      "mp": 20,
+      "max_mp": 20,
+      "atk_bonus": 10,
+      "def_bonus": 5,
+      "mag_bonus": 0
+    },
+    {
+      "name": "TestMage",
+      "class": "mago",
+      "hp": 80,
+      "max_hp": 80,
+      "mp": 50,
+      "max_mp": 50,
+      "atk_bonus": 0,
+      "def_bonus": 0,
+      "mag_bonus": 15
+    }
+  ]
+}

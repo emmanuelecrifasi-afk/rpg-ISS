@@ -1,0 +1,314 @@
+{
+  "test_name": "csv_commands_execution",
+  "timestamp": "2026-01-30T14:07:02.386768",
+  "total_commands": 6,
+  "results": [
+    {
+      "step": 1,
+      "command": "status",
+      "description": "Visualizza stato party",
+      "expected": "success",
+      "parsed": true,
+      "party_state_before": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 80,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      },
+      "action": "status",
+      "target": null,
+      "args": [],
+      "execution": {
+        "status": "success",
+        "message": "Status displayed"
+      },
+      "party_state_after": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 80,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      }
+    },
+    {
+      "step": 2,
+      "command": "p1 atk",
+      "description": "Player 1 attacca",
+      "expected": "success",
+      "parsed": true,
+      "party_state_before": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 80,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      },
+      "action": "atk",
+      "target": "p1",
+      "args": [],
+      "execution": {
+        "status": "success",
+        "attacker": "TestHero1",
+        "target": "TestHero2",
+        "damage": 25,
+        "target_ko": false
+      },
+      "party_state_after": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 55,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      }
+    },
+    {
+      "step": 3,
+      "command": "p2 heal",
+      "description": "Player 2 si cura",
+      "expected": "success",
+      "parsed": true,
+      "party_state_before": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 55,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      },
+      "action": "heal",
+      "target": "p2",
+      "args": [],
+      "execution": {
+        "status": "success",
+        "healer": "TestHero2",
+        "heal_amount": 20
+      },
+      "party_state_after": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      }
+    },
+    {
+      "step": 4,
+      "command": "p1 heal 50",
+      "description": "Player 1 si cura di 50 HP",
+      "expected": "success",
+      "parsed": true,
+      "party_state_before": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      },
+      "action": "heal",
+      "target": "p1",
+      "args": [
+        "50"
+      ],
+      "execution": {
+        "status": "success",
+        "healer": "TestHero1",
+        "heal_amount": 0
+      },
+      "party_state_after": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      }
+    },
+    {
+      "step": 5,
+      "command": "help",
+      "description": "Mostra aiuto",
+      "expected": "success",
+      "parsed": true,
+      "party_state_before": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      },
+      "action": "help",
+      "target": null,
+      "args": [],
+      "execution": {
+        "status": "success",
+        "message": "Command help acknowledged"
+      },
+      "party_state_after": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      }
+    },
+    {
+      "step": 6,
+      "command": "quit",
+      "description": "Esce dal gioco",
+      "expected": "success",
+      "parsed": true,
+      "party_state_before": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      },
+      "action": "quit",
+      "target": null,
+      "args": [],
+      "execution": {
+        "status": "success",
+        "message": "Command quit acknowledged"
+      },
+      "party_state_after": {
+        "characters": [
+          {
+            "name": "TestHero1",
+            "class": "guerriero",
+            "hp": 120,
+            "max_hp": 120,
+            "is_alive": true
+          },
+          {
+            "name": "TestHero2",
+            "class": "mago",
+            "hp": 75,
+            "max_hp": 80,
+            "is_alive": true
+          }
+        ]
+      }
+    }
+  ]
+}

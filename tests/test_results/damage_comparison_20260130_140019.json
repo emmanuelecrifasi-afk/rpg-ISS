@@ -1,0 +1,62 @@
+{
+  "test_name": "physical_vs_magic_damage",
+  "timestamp": "2026-01-30T14:00:19.929252",
+  "tests": [
+    {
+      "round": 1,
+      "warrior_physical": 32,
+      "mage_magic": 38
+    },
+    {
+      "round": 2,
+      "warrior_physical": 32,
+      "mage_magic": 37
+    },
+    {
+      "round": 3,
+      "warrior_physical": 22,
+      "mage_magic": 44
+    },
+    {
+      "round": 4,
+      "warrior_physical": 27,
+      "mage_magic": 37
+    },
+    {
+      "round": 5,
+      "warrior_physical": 32,
+      "mage_magic": 38
+    },
+    {
+      "round": 6,
+      "warrior_physical": 27,
+      "mage_magic": 38
+    },
+    {
+      "round": 7,
+      "warrior_physical": 29,
+      "mage_magic": 43
+    },
+    {
+      "round": 8,
+      "warrior_physical": 21,
+      "mage_magic": 39
+    },
+    {
+      "round": 9,
+      "warrior_physical": 31,
+      "mage_magic": 36
+    },
+    {
+      "round": 10,
+      "warrior_physical": 27,
+      "mage_magic": 45
+    }
+  ],
+  "averages": {
+    "warrior_physical_avg": 28.0,
+    "mage_magic_avg": 39.5,
+    "warrior_atk_bonus": 10,
+    "mage_mag_bonus": 15
+  }
+}
