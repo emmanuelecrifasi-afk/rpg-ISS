@@ -40,8 +40,7 @@ class GameEngine:
         self.current_battle = None
         self.in_combat = False
         
-        # Il party verrà creato durante la fase di setup
-        # Non inizializziamo più il party di default qui
+        
     
     def _initialize_default_party(self):
         """Crea un party di default con 2 personaggi (non più usato)"""
@@ -166,7 +165,7 @@ class GameEngine:
                 if not user_input:
                     continue
                 
-                # Parsea il comando
+                
                 command = self.input_manager.parse(user_input)
                 
                 if command is None:
@@ -236,7 +235,7 @@ class GameEngine:
             print_action_result(f"{attacker.name} è KO e non può attaccare!", success=False)
             return
         
-        # Per ora, attacca un personaggio casuale diverso dall'attaccante
+        
         possible_targets = [c for c in self.party.characters if c != attacker and c.is_alive]
         
         if not possible_targets:
@@ -270,7 +269,7 @@ class GameEngine:
             print_action_result(f"{healer.name} è KO e non può curarsi!", success=False)
             return
         
-        # Quantità di cura (default 20, oppure specificata dall'utente)
+        
         heal_amount = 20
         if command.args and command.args[0].isdigit():
             heal_amount = int(command.args[0])
@@ -318,7 +317,7 @@ class GameEngine:
         print("🗺️  CARICAMENTO MAPPA")
         print_separator("=")
         
-        # Prova a caricare map_01.json
+        
         map_path = Path("data/maps/map_01.json")
         
         if map_path.exists():

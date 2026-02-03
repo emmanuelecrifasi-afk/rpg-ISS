@@ -34,7 +34,7 @@ class TestBattle:
     
     def test_battle_initialization(self, battle):
         """Test inizializzazione battaglia"""
-        assert battle.is_active is False  # Non ancora iniziata
+        assert battle.is_active is False  
         assert len(battle.battle_log) == 0
     
     def test_start_battle(self, battle):
@@ -59,7 +59,7 @@ class TestBattle:
     def test_execute_player_heal(self, battle, sample_party):
         """Test cura giocatore"""
         player = sample_party.characters[0]
-        player.hp = 50  # Riduci HP
+        player.hp = 50  
         
         action = battle.execute_player_turn(player, "heal", player)
         
@@ -80,14 +80,14 @@ class TestBattle:
     
     def test_execute_enemy_turn(self, battle, sample_party):
         """Test turno nemico"""
-        # Salva HP iniziali
+        
         initial_hp = {char.name: char.hp for char in sample_party.characters}
         
         action = battle.execute_enemy_turn()
         
         assert action.action_type == "attack"
         
-        # Almeno un giocatore ha perso HP
+        
         damaged = any(
             sample_party.characters[i].hp < initial_hp[char.name]
             for i, char in enumerate(sample_party.characters)

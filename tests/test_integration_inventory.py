@@ -32,7 +32,7 @@ class TestInventoryIntegration:
         party.add_character(warrior)
         party.add_character(mage)
         
-        # Aggiungi oggetti
+        
         party.inventory.add_item('health_potion', 3)
         party.inventory.add_item('mana_potion', 2)
         party.inventory.add_item('bomb', 1)
@@ -64,13 +64,13 @@ class TestInventoryIntegration:
             }
             results["classes"].append(class_data)
         
-        # Verifica modificatori
+        
         assert warrior.atk_bonus > mage.atk_bonus
         assert mage.mag_bonus > warrior.mag_bonus
         assert warrior.hp > mage.hp
         assert mage.mp > warrior.mp
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"class_modifiers_{timestamp}.json"
         
@@ -95,7 +95,7 @@ class TestInventoryIntegration:
         battle.start_battle()
         warrior = sample_party.characters[0]
         
-        # Test uso pozione vita
+        
         warrior.hp = 50
         action = battle.execute_player_turn(warrior, "use_item", warrior, "health_potion")
         
@@ -109,7 +109,7 @@ class TestInventoryIntegration:
         assert warrior.hp > 50
         assert sample_party.inventory.get_item_count('health_potion') == 2
         
-        # Test uso bomba
+        
         initial_enemy_hp = enemy.hp
         action = battle.execute_player_turn(warrior, "use_item", None, "bomb")
         
@@ -126,7 +126,7 @@ class TestInventoryIntegration:
         
         results["final_inventory"] = sample_party.inventory.to_dict()
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"inventory_combat_{timestamp}.json"
         
@@ -147,7 +147,7 @@ class TestInventoryIntegration:
             "tests": []
         }
         
-        # Test 10 attacchi per tipo
+        
         for i in range(10):
             phys_dmg = warrior.calculate_physical_damage()
             mag_dmg = mage.calculate_magic_damage()
@@ -158,7 +158,7 @@ class TestInventoryIntegration:
                 "mage_magic": mag_dmg
             })
         
-        # Calcola medie
+        
         avg_phys = sum(t["warrior_physical"] for t in results["tests"]) / 10
         avg_mag = sum(t["mage_magic"] for t in results["tests"]) / 10
         
@@ -169,14 +169,14 @@ class TestInventoryIntegration:
             "mage_mag_bonus": mage.mag_bonus
         }
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"damage_comparison_{timestamp}.json"
         
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        # Il guerriero dovrebbe fare più danno fisico
+        
         assert avg_phys > avg_mag - mage.mag_bonus
         
         print(f"\n✓ Danno fisico medio (Guerriero): {avg_phys:.1f}")
@@ -195,7 +195,7 @@ class TestInventoryIntegration:
             "actions": []
         }
         
-        # Test uso MP
+        
         initial_mp = mage.mp
         success = mage.use_mp(10)
         
@@ -209,7 +209,7 @@ class TestInventoryIntegration:
         assert success is True
         assert mage.mp == initial_mp - 10
         
-        # Test ripristino MP
+        
         restored = mage.restore_mp(5)
         
         results["actions"].append({
@@ -221,7 +221,7 @@ class TestInventoryIntegration:
         
         assert restored == 5
         
-        # Test uso MP insufficienti
+        
         mage.mp = 5
         success = mage.use_mp(10)
         
@@ -236,7 +236,7 @@ class TestInventoryIntegration:
         
         results["final_mp"] = mage.mp
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"mp_system_{timestamp}.json"
         
@@ -254,16 +254,16 @@ class TestInventoryIntegration:
             "initial_state": sample_party.inventory.to_dict()
         }
         
-        # Entrambi i personaggi usano lo stesso inventario
+        
         warrior = sample_party.characters[0]
         mage = sample_party.characters[1]
         
-        # Warrior usa pozione
+        
         warrior.hp = 50
         initial_count = sample_party.inventory.get_item_count('health_potion')
         sample_party.inventory.use_item('health_potion')
         
-        # Mage vede lo stesso inventario
+        
         count_after = sample_party.inventory.get_item_count('health_potion')
         
         results["test"] = {
@@ -276,7 +276,7 @@ class TestInventoryIntegration:
         
         results["final_state"] = sample_party.inventory.to_dict()
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"shared_inventory_{timestamp}.json"
         

@@ -35,7 +35,7 @@ class TestMovementManager:
         """Test inizializzazione con posizione custom"""
         manager = MovementManager(simple_world, start_x=1, start_y=0)
         
-        # Dovrebbe usare START invece della posizione custom
+        
         assert manager.get_position() == (0, 0)
     
     def test_initialization_no_start(self):
@@ -44,7 +44,7 @@ class TestMovementManager:
         world = World(grid=grid)
         manager = MovementManager(world)
         
-        # Dovrebbe trovare la prima cella percorribile
+        
         assert manager.get_position() == (0, 0)
     
     def test_move_up_success(self):
@@ -84,8 +84,8 @@ class TestMovementManager:
     
     def test_move_into_wall(self, movement_manager):
         """Test movimento verso un muro"""
-        movement_manager.move('d')  # (0,0) -> (1,0)
-        result = movement_manager.move('d')  # Prova ad andare su muro (2,0)
+        movement_manager.move('d')  
+        result = movement_manager.move('d')  
         
         assert result.success is False
         assert "muro" in result.message.lower()
@@ -93,7 +93,7 @@ class TestMovementManager:
     
     def test_move_out_of_bounds(self, movement_manager):
         """Test movimento fuori dai limiti"""
-        result = movement_manager.move('w')  # Prova ad andare su da (0,0)
+        result = movement_manager.move('w')  
         
         assert result.success is False
         assert "confini" in result.message.lower()
@@ -107,7 +107,7 @@ class TestMovementManager:
     
     def test_move_to_danger_cell(self, movement_manager):
         """Test movimento su cella DANGER"""
-        # Vai a (0, 1) poi a (0, 2) che è DANGER
+        
         movement_manager.move('s')
         result = movement_manager.move('s')
         
@@ -117,12 +117,12 @@ class TestMovementManager:
     
     def test_move_to_exit_cell(self, movement_manager):
         """Test movimento su cella EXIT"""
-        # Vai a (2, 2) che è EXIT
-        movement_manager.move('d')  # (0,0) -> (1,0)
-        movement_manager.move('s')  # (1,0) -> (1,2) (salta muro?)
-        # Percorso corretto: (0,0) -> (0,1) -> (1,2) -> (2,2)
         
-        # Reset e percorso corretto
+        movement_manager.move('d')  
+        movement_manager.move('s')  
+        
+        
+        
         movement_manager.position_x = 1
         movement_manager.position_y = 2
         result = movement_manager.move('d')
@@ -146,15 +146,15 @@ class TestMovementManager:
     
     def test_command_aliases(self, movement_manager):
         """Test alias dei comandi di movimento"""
-        # Test 'up' come alias di 'w'
+        
         result = movement_manager.move('down')
         assert result.success is True
         
-        # Reset
+        
         movement_manager.position_x = 0
         movement_manager.position_y = 0
         
-        # Test 'right' come alias di 'd'  
+          
         result = movement_manager.move('right')
         assert result.success is True
     
@@ -182,7 +182,7 @@ class TestMovementManager:
     
     def test_sequential_movements(self, movement_manager):
         """Test sequenza di movimenti"""
-        # (0,0) -> (0,1) -> (0,2)
+        
         result1 = movement_manager.move('s')
         assert result1.success is True
         
@@ -194,11 +194,11 @@ class TestMovementManager:
     
     def test_backtrack_movement(self, movement_manager):
         """Test movimento in avanti e indietro"""
-        # Avanti
+        
         movement_manager.move('d')
         assert movement_manager.get_position() == (1, 0)
         
-        # Indietro
+        
         result = movement_manager.move('a')
         assert result.success is True
         assert movement_manager.get_position() == (0, 0)

@@ -27,10 +27,10 @@ class TestCompleteGameFlow:
     
     def test_menu_to_char_creation(self, full_game):
         """Test transizione menu -> creazione personaggio"""
-        # Stato iniziale
+        
         assert full_game.state == GameState.MENU
         
-        # Seleziona "Nuova Partita"
+        
         full_game.menu_selected = 0
         full_game._handle_menu_input(pygame.K_RETURN)
         
@@ -40,18 +40,17 @@ class TestCompleteGameFlow:
         """Test creazione completa di due personaggi"""
         full_game.state = GameState.CHAR_CREATION
         
-        # Primo personaggio
+        
         full_game.temp_name = "Kael"
-        full_game.temp_class_index = 0  # Warrior
+        full_game.temp_class_index = 0  
         full_game.creation_phase = 0
         full_game._handle_char_creation_input(pygame.K_RETURN)
         
         assert len(full_game.party.characters) == 1
         assert full_game.creation_phase == 1
         
-        # Secondo personaggio
         full_game.temp_name = "Elara"
-        full_game.temp_class_index = 1  # Mage
+        full_game.temp_class_index = 1  
         full_game._handle_char_creation_input(pygame.K_RETURN)
         
         assert len(full_game.party.characters) == 2
@@ -66,7 +65,7 @@ class TestCompleteGameFlow:
         full_game.state = GameState.STORY_INTRO
         full_game.dialogue_next_state = GameState.LEVEL_SELECTION
         
-        # Salta tutte le righe della storia
+        
         for _ in range(len(full_game.intro_lines)):
             full_game.text_complete = True
             full_game._handle_story_intro_input(pygame.K_RETURN)
@@ -79,7 +78,7 @@ class TestCompleteGameFlow:
         full_game.level_selection_index = 0
         full_game.max_unlocked_index = 0
         
-        # Mock del mondo
+        
         full_game.world = World(grid=[[3, 0, 4]], name="Test Level")
         full_game.movement_manager = __import__('core.movement', fromlist=['MovementManager']).MovementManager(full_game.world)
         
@@ -94,8 +93,8 @@ class TestCompleteGameFlow:
         full_game.movement_manager = __import__('core.movement', fromlist=['MovementManager']).MovementManager(full_game.world)
         full_game.state = GameState.EXPLORATION
         
-        # Muovi verso un nemico
-        full_game._try_move('d')  # Muove a destra
+        
+        full_game._try_move('d') 
         
         assert full_game.state == GameState.COMBAT
         assert full_game.current_battle is not None
@@ -109,7 +108,7 @@ class TestCompleteGameFlow:
         
         full_game._start_combat()
         
-        # Simula vittoria
+        
         full_game.current_battle.enemy.hp = 0
         full_game.current_battle.enemy.is_alive = False
         
@@ -161,19 +160,19 @@ class TestLevelProgression:
         full_game.current_level_index = 0
         full_game.max_unlocked_index = 0
         
-        # Setup party
+        
         full_game.party.add_character(Character("Hero", "warrior"))
         
-        # Completa livello 1
+        
         full_game.world = World(grid=[[3, 0, 4]], name="Level 1")
         full_game.movement_manager = MovementManager(full_game.world)
-        full_game.movement_manager.position = (2, 0)  # Sulla exit
+        full_game.movement_manager.position = (2, 0)  
         full_game.state = GameState.EXPLORATION
         
-        # Nessun nemico nella griglia
+        
         full_game.world.grid[0] = [3, 0, 4]
         
-        # Simula completamento livello
+        
         if full_game._are_all_enemies_defeated():
             if full_game.current_level_index < len(full_game.level_files) - 1:
                 next_idx = full_game.current_level_index + 1
@@ -191,7 +190,7 @@ class TestLevelProgression:
         initial_state = full_game.state
         full_game._handle_level_selection_input(pygame.K_RETURN)
         
-        # Lo stato non dovrebbe cambiare
+        
         assert full_game.state == initial_state
     
     def test_all_levels_defined(self, full_game):
@@ -210,21 +209,21 @@ class TestBossFight:
     def test_boss_fight_trigger(self, full_game):
         """Test che il boss fight si triggeri correttamente"""
         full_game.party.add_character(Character("Hero", "warrior"))
-        full_game.current_level_index = 3  # Ultimo livello
+        full_game.current_level_index = 3  
         full_game.final_boss_defeated = False
         full_game.world = World(grid=[[3, 0, 4]], name="Final Level")
         full_game.movement_manager = __import__('core.movement', fromlist=['MovementManager']).MovementManager(full_game.world)
         full_game.movement_manager.position = (2, 0)
         full_game.state = GameState.EXPLORATION
         
-        # Nessun nemico normale
+        
         full_game.world.grid[0] = [3, 0, 4]
         
-        # Triggera exit
-        full_game._try_move('s')  # Qualsiasi movimento
-        full_game.movement_manager.position = (2, 0)  # Forza sulla exit
         
-        # Simula movimento su exit
+        full_game._try_move('s')  
+        full_game.movement_manager.position = (2, 0)  
+        
+        
         if full_game.current_level_index == len(full_game.level_files) - 1:
             if not full_game.final_boss_defeated:
                 full_game._start_boss_fight()
@@ -239,7 +238,7 @@ class TestBossFight:
         
         full_game.party.add_character(Character("Hero", "warrior"))
         
-        # Crea boss usando create_random e poi modificalo
+        
         boss = Enemy.create_random(min_level=5, max_level=5)
         boss.name = "DRAGO ANTICO"
         boss.max_hp = 300
@@ -250,7 +249,7 @@ class TestBossFight:
         full_game.current_battle = Battle(full_game.party, boss)
         full_game.state = GameState.COMBAT
         
-        # Sconfiggi boss
+        
         full_game.current_battle.enemy.hp = 0
         full_game.current_battle.enemy.is_alive = False
         
@@ -280,16 +279,16 @@ class TestInventoryIntegration:
     
     def test_treasure_collection(self, full_game):
         """Test raccolta tesoro"""
-        full_game.world = World(grid=[[3, 5, 4]], name="Test")  # 5 = TREASURE
+        full_game.world = World(grid=[[3, 5, 4]], name="Test")  
         full_game.movement_manager = __import__('core.movement', fromlist=['MovementManager']).MovementManager(full_game.world)
         full_game.party.add_character(Character("Hero", "warrior"))
         
         initial_items = len(full_game.party.inventory.items)
         
-        # Muovi verso tesoro
+        
         full_game._try_move('d')
         
-        # Dovrebbe aver raccolto un oggetto
+        
         assert len(full_game.party.inventory.items) >= initial_items
 
 
@@ -304,16 +303,15 @@ class TestMessageSystem:
     
     def test_message_clear(self, full_game):
         """Test cancellazione messaggio dopo timeout"""
-        full_game._show_message("Test", duration=100)  # 100ms timeout
+        full_game._show_message("Test", duration=100)  
         
-        # Simula passaggio del tempo
+        
         import time
-        time.sleep(0.15)  # Aspetta più del timeout
+        time.sleep(0.15)  
         
         full_game._update(200)
         
-        # Il messaggio dovrebbe essere stato cancellato
-        # Se il timer non è ancora scaduto, verifichiamo solo che il meccanismo esista
+        
         assert hasattr(full_game, 'message')
         assert hasattr(full_game, 'message_timer')
 
@@ -333,8 +331,7 @@ class TestRenderingIntegration:
         
         for state in states:
             full_game.state = state
-            full_game._render()
-            # Se arriviamo qui senza eccezioni, il test passa
+            
         
         assert True
     

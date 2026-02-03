@@ -34,7 +34,7 @@ class World:
         self.width = len(self.grid[0]) if self.grid else 0
         self.height = len(self.grid) if self.grid else 0
         
-        # Trova la posizione di START se presente
+        
         self.start_position = self._find_cell_type(CellType.START)
     
     def get_cell(self, x: int, y: int) -> Optional[int]:

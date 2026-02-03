@@ -371,17 +371,14 @@ class Battle:
     def end_battle(self, victory: bool):
         """Gestisce la fine della battaglia e i premi"""
         if victory:
-            # Nota: uso 'characters' invece di 'members' per compatibilità col tuo file
+            
             for member in self.party.characters:
-                # Controlla che il membro sia vivo (opzionale)
-                if member.is_alive:  # Usa la proprietà is_alive che è più pulita di hp > 0
+                
+                if member.is_alive:  
                     if hasattr(member, 'apply_victory_bonus'):
                         member.apply_victory_bonus()
-            # --------------------------------
-            
-            # Opzionale: riattiva il movimento del party se hai questa flag
-            # self.party.active = True 
+ 
             
         else:
             print("\n--- GAME OVER ---")
-            # Qui potresti aggiungere logica di salvataggio o ritorno al menu
+            

@@ -72,7 +72,7 @@ class MovementManager:
         self.position_x = start_x
         self.position_y = start_y
         
-        # Se il mondo ha una posizione START, usala
+        
         if world.start_position:
             self.position_x, self.position_y = world.start_position
         
@@ -229,7 +229,7 @@ class MovementManager:
         
         base_desc = descriptions.get(cell_type, "Ti trovi in una zona sconosciuta.")
         
-        # Aggiungi info sulle celle circostanti
+        
         surroundings = self.get_surrounding_cells()
         warnings = []
         

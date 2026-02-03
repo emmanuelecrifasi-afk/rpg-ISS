@@ -36,7 +36,7 @@ class TestExplorationIntegration:
         """Test esplorazione completa di un dungeon"""
         manager = MovementManager(dungeon_world)
         
-        # Sequenza di comandi per esplorare
+        
         commands = ['d', 's', 's', 'd', 's', 'd', 'd', 'w', 'w', 'd']
         
         results = {
@@ -67,14 +67,14 @@ class TestExplorationIntegration:
         results["final_position"] = manager.get_position()
         results["total_successful_moves"] = sum(1 for m in results["movements"] if m["success"])
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"exploration_results_{timestamp}.json"
         
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        # Verifiche
+        
         assert results["total_successful_moves"] > 0
         assert output_file.exists()
         
@@ -85,7 +85,7 @@ class TestExplorationIntegration:
         """Test rilevamento collisioni con muri"""
         manager = MovementManager(dungeon_world)
         
-        # Prova a sbattere contro tutti i muri possibili
+        
         collision_tests = [
             {'from': (0, 0), 'command': 'w', 'expected': 'OUT_OF_BOUNDS'},
             {'from': (0, 0), 'command': 'a', 'expected': 'OUT_OF_BOUNDS'},
@@ -116,7 +116,7 @@ class TestExplorationIntegration:
         
         results["all_passed"] = all(t["passed"] for t in results["tests"])
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"collision_test_{timestamp}.json"
         
@@ -132,7 +132,7 @@ class TestExplorationIntegration:
         """Test rilevamento trigger (DANGER, EXIT, TREASURE)"""
         manager = MovementManager(dungeon_world)
         
-        # Trova tutte le celle con trigger
+        
         trigger_cells = []
         for y in range(dungeon_world.height):
             for x in range(dungeon_world.width):
@@ -150,15 +150,14 @@ class TestExplorationIntegration:
             "detected_triggers": []
         }
         
-        # Testa ogni trigger
+        
         for cell_info in trigger_cells:
             x, y = cell_info['position']
             
-            # Posiziona il manager vicino
             manager.position_x = max(0, x - 1)
             manager.position_y = y
             
-            # Muovi sulla cella trigger
+            
             if x > manager.position_x:
                 result = manager.move('d')
             elif x < manager.position_x:
@@ -177,14 +176,14 @@ class TestExplorationIntegration:
                     "matched": result.trigger is not None
                 })
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"trigger_test_{timestamp}.json"
         
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        # Verifica che almeno alcuni trigger siano stati rilevati
+        
         detected_count = sum(1 for t in results["detected_triggers"] if t["matched"])
         assert detected_count > 0
         
@@ -193,13 +192,13 @@ class TestExplorationIntegration:
     
     def test_map_loading_and_navigation(self, test_results_dir):
         """Test caricamento mappa da file e navigazione"""
-        # Controlla se esiste map_01.json
+        
         map_path = Path("data/maps/map_01.json")
         
         if not map_path.exists():
             pytest.skip("Map file not found")
         
-        # Carica la mappa
+        
         world = World.load_from_file(str(map_path))
         manager = MovementManager(world)
         
@@ -213,7 +212,7 @@ class TestExplorationIntegration:
             "test_movements": []
         }
         
-        # Esegui alcuni movimenti di test
+        
         test_moves = ['d', 's', 'a', 'w']
         for cmd in test_moves:
             result = manager.move(cmd)
@@ -223,7 +222,7 @@ class TestExplorationIntegration:
                 "position": manager.get_position()
             })
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"map_loading_test_{timestamp}.json"
         
@@ -240,7 +239,7 @@ class TestExplorationIntegration:
         """Test percorso dall'inizio all'uscita"""
         manager = MovementManager(dungeon_world)
         
-        # Trova l'uscita
+        
         exit_pos = None
         for y in range(dungeon_world.height):
             for x in range(dungeon_world.width):
@@ -253,7 +252,7 @@ class TestExplorationIntegration:
         if not exit_pos:
             pytest.skip("No exit found in map")
         
-        # Percorso manuale all'uscita (esempio semplificato)
+        
         path = ['d', 's', 's', 's', 'd', 'd', 'd', 'w', 'w', 'w']
         
         results = {
@@ -279,7 +278,7 @@ class TestExplorationIntegration:
         
         results["reached_exit"] = manager.get_position() == exit_pos
         
-        # Salva risultati
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"pathfinding_test_{timestamp}.json"
         

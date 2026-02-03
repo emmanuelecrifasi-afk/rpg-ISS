@@ -90,7 +90,7 @@ class TestPygameGameEngine:
     
     def test_new_game_selection(self, engine):
         """Test selezione Nuova Partita"""
-        engine.menu_selected = 0  # Nuova Partita
+        engine.menu_selected = 0  
         engine._handle_menu_input(pygame.K_RETURN)
         assert engine.state == GameState.CHAR_CREATION
     
@@ -185,11 +185,11 @@ class TestPygameGameEngine:
         """Test livello bloccato"""
         engine.state = GameState.LEVEL_SELECTION
         engine.max_unlocked_index = 0
-        engine.level_selection_index = 2  # Livello 3 bloccato
+        engine.level_selection_index = 2  
         
         engine._handle_level_selection_input(pygame.K_RETURN)
         
-        # Lo stato non dovrebbe cambiare
+        
         assert engine.state == GameState.LEVEL_SELECTION
     
     def test_level_unlocked(self, engine):
@@ -198,7 +198,7 @@ class TestPygameGameEngine:
         engine.max_unlocked_index = 0
         engine.level_selection_index = 0
         
-        # Mock del caricamento mappa
+        
         from models.world import World
         engine.world = World(grid=[[3, 0, 4]], name="Test")
         engine.movement_manager = __import__('core.movement', fromlist=['MovementManager']).MovementManager(engine.world)
@@ -214,7 +214,7 @@ class TestPygameGameEngine:
         engine.inventory_selected = 0
         
         engine._handle_inventory_input(pygame.K_DOWN)
-        # Con un solo oggetto, dovrebbe rimanere a 0
+        
         assert engine.inventory_selected == 0
     
     def test_inventory_close(self, engine):
@@ -342,20 +342,18 @@ class TestCombatIntegration:
         engine.party.add_character(Character("Hero", "warrior"))
         engine.world = World(grid=[[3, 2, 4]], name="Test")
         engine.movement_manager = MovementManager(engine.world)
-        engine.movement_manager.position = (1, 0)  # Sulla cella nemico
+        engine.movement_manager.position = (1, 0)  
         
-        # Simula vittoria
+        
         engine._start_combat()
         
-        # Forza il nemico a morire
+        
         engine.current_battle.enemy.hp = 0
         engine.current_battle.enemy.is_alive = False
         
-        # Esegui il next turn che dovrebbe pulire la cella
+        
         engine._next_combat_turn()
         
-        # Dopo la vittoria, la cella dovrebbe essere pulita
-        # Se il test fallisce ancora, significa che _next_combat_turn non pulisce la griglia
-        # In questo caso il test verifica semplicemente che lo stato sia tornato a exploration
+        
         assert engine.state == GameState.EXPLORATION
         assert engine.current_battle is None

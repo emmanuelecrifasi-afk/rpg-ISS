@@ -48,7 +48,7 @@ class TestCombatIntegration:
         battle.start_battle()
         
         # Simula battaglia automatica
-        max_turns = 50  # Limite sicurezza
+        max_turns = 50  
         turn_count = 0
         
         while battle.is_active and turn_count < max_turns:
@@ -116,7 +116,7 @@ class TestCombatIntegration:
         """Test condizione di vittoria"""
         # Nemico debole
         enemy = Enemy(enemy_type="goblin", level=1)
-        enemy.hp = 10  # HP molto bassi
+        enemy.hp = 10  
         
         battle = Battle(sample_party, enemy)
         battle.start_battle()
@@ -138,7 +138,7 @@ class TestCombatIntegration:
             results["victory"] = battle_result.victory
             results["enemy_defeated"] = battle_result.enemy_defeated
         
-        # Salva
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"victory_test_{timestamp}.json"
         
@@ -153,7 +153,7 @@ class TestCombatIntegration:
     
     def test_defeat_condition(self, sample_party, test_results_dir):
         """Test condizione di sconfitta"""
-        # Nemico potentissimo
+        
         enemy = Enemy(enemy_type="dragon", level=10)
         battle = Battle(sample_party, enemy)
         
@@ -164,7 +164,7 @@ class TestCombatIntegration:
         
         battle.start_battle()
         
-        # Uccidi tutti i giocatori
+        
         for char in sample_party.characters:
             char.hp = 0
             char.is_alive = False
@@ -177,7 +177,7 @@ class TestCombatIntegration:
             results["game_over"] = battle_result.game_over
             results["survivors"] = len(battle_result.survivors)
         
-        # Salva
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"defeat_test_{timestamp}.json"
         
@@ -204,26 +204,26 @@ class TestCombatIntegration:
         
         battle.start_battle()
         
-        # Esegui 20 turni nemici e registra i bersagli
+        
         for i in range(20):
             action = battle.execute_enemy_turn()
             
             if action.action_type == "attack":
                 results["targets_hit"].append(action.target)
         
-        # Verifica che abbia colpito entrambi i giocatori
+        
         unique_targets = set(results["targets_hit"])
         results["unique_targets"] = list(unique_targets)
         results["target_variety"] = len(unique_targets)
         
-        # Salva
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"ai_targeting_test_{timestamp}.json"
         
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        # L'IA dovrebbe aver colpito almeno un giocatore
+        
         assert len(unique_targets) >= 1
         
         print(f"\n✓ IA ha colpito {len(unique_targets)} bersagli diversi")
@@ -242,8 +242,8 @@ class TestCombatIntegration:
         
         battle.start_battle()
         
-        # Registra ordine turni per 2 round
-        for _ in range(6):  # 2 round * 3 combattenti
+        
+        for _ in range(6):  
             current = battle.turn_manager.get_current_combatant()
             if not current:
                 break
@@ -255,14 +255,14 @@ class TestCombatIntegration:
             
             battle.turn_manager.next_turn()
         
-        # Salva
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"turn_order_test_{timestamp}.json"
         
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=2, ensure_ascii=False)
         
-        # Verifica pattern: Player, Player, Enemy, Player, Player, Enemy
+        
         if len(results["turn_sequence"]) >= 6:
             assert results["turn_sequence"][0]["is_player"] is True
             assert results["turn_sequence"][1]["is_player"] is True
@@ -281,7 +281,7 @@ class TestCombatIntegration:
         }
         
         for i in range(3):
-            # Reset HP del party
+            
             for char in sample_party.characters:
                 char.hp = char.max_hp
                 char.is_alive = True
@@ -297,7 +297,7 @@ class TestCombatIntegration:
                 "turns": 0
             }
             
-            # Simula battaglia
+            
             max_turns = 30
             for turn in range(max_turns):
                 current = battle.turn_manager.get_current_combatant()
@@ -319,7 +319,7 @@ class TestCombatIntegration:
             
             results["battles"].append(battle_data)
         
-        # Salva
+        
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"multiple_battles_test_{timestamp}.json"
         

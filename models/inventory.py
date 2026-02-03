@@ -67,7 +67,7 @@ class Inventory:
         
         item.quantity -= quantity
         
-        # Rimuovi l'oggetto se la quantità è 0
+        # Rimuove l'oggetto se la quantità è 0
         if item.quantity == 0:
             del self.items[item_id]
         
@@ -160,7 +160,7 @@ class Inventory:
         return self.items[item_id].quantity
     
     def get_total_items(self) -> int:
-        """Ritorna il numero totale di oggetti (somma quantità)"""
+        """Ritorna il numero totale di oggetti"""
         return sum(item.quantity for item in self.items.values())
     
     def get_unique_items(self) -> int:

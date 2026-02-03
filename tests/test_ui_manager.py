@@ -76,7 +76,7 @@ class TestUIManager:
             test_enemy, 
             current_turn="Kael"
         )
-        # Verifica che non ci siano eccezioni
+        
         assert True
     
     def test_draw_combat_ui_no_active_turn(self, ui_manager, test_party, test_enemy):
@@ -115,7 +115,7 @@ class TestUIManager:
     def test_draw_stat_bar_overflow(self, ui_manager):
         """Test barra con valore superiore al massimo"""
         ui_manager.renderer.clear()
-        # Il sistema dovrebbe gestire questo caso senza crash
+        
         ui_manager.draw_stat_bar_labeled(100, 100, 200, 15, 150, 100, Color.GREEN, "HP")
         assert True
     
@@ -182,7 +182,7 @@ class TestUIManager:
         inv = Inventory()
         inv.add_item('health_potion', 5)
         inv.add_item('mana_potion', 3)
-        # Seleziona il secondo oggetto
+        
         ui_manager.draw_inventory_ui(inv, selected_index=1)
         assert True
     
@@ -266,11 +266,11 @@ class TestUIManagerIntegration:
         """Test schermata completa di combattimento"""
         ui_manager.renderer.clear()
         
-        # Simula turno giocatore
+        
         ui_manager.draw_combat_ui_split_screen(test_party, test_enemy, "Kael")
         ui_manager.renderer.update()
         
-        # Simula turno nemico
+        
         ui_manager.draw_combat_ui_split_screen(test_party, test_enemy, None)
         ui_manager.renderer.update()
         
@@ -280,7 +280,7 @@ class TestUIManagerIntegration:
         """Test UI con party danneggiato"""
         ui_manager.renderer.clear()
         
-        # Danneggia il party
+        
         test_party.characters[0].hp = 10
         test_party.characters[1].hp = 5
         test_party.characters[1].mp = 10
@@ -292,7 +292,7 @@ class TestUIManagerIntegration:
         """Test UI con personaggio KO"""
         ui_manager.renderer.clear()
         
-        # KO primo personaggio
+        
         test_party.characters[0].hp = 0
         test_party.characters[0].is_alive = False
         

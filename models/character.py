@@ -137,7 +137,7 @@ class Character:
     
     def restore_mp(self, amount: int) -> int:
         """
-        Ripristina i MP del personaggio
+        Ripristina gli MP del personaggio
         
         Args:
             amount: Quantità di MP da ripristinare
@@ -213,18 +213,18 @@ class Character:
         """Ritorna la lista delle classi disponibili"""
         return list(cls.CLASSES.keys())
     
-    # In character.py
+    
 
     def apply_victory_bonus(self):
         """Aumenta HP e Mana massimi dopo una vittoria"""
         hp_boost = 10
         mp_boost = 5
         
-        # 1. Aumenta HP (Sicuro al 100%)
+        
         self.max_hp += hp_boost
         self.hp += hp_boost  
         
-        # 2. Aumenta Mana (Controlla se esiste l'attributo per evitare crash)
+        
         if hasattr(self, 'mp') and hasattr(self, 'max_mp'):
             self.max_mp += mp_boost
             self.mp += mp_boost

@@ -32,15 +32,15 @@ class TestTurnManager:
         """Test inizializzazione"""
         assert turn_manager.round_number == 1
         assert turn_manager.current_turn_index == 0
-        assert len(turn_manager.turn_order) == 3  # 2 players + 1 enemy
+        assert len(turn_manager.turn_order) == 3  
     
     def test_turn_order_structure(self, turn_manager):
         """Test struttura ordine turni"""
-        # Primi due sono giocatori
+        
         assert turn_manager.turn_order[0].is_player is True
         assert turn_manager.turn_order[1].is_player is True
         
-        # Ultimo è nemico
+        
         assert turn_manager.turn_order[2].is_player is False
     
     def test_get_current_combatant(self, turn_manager):
@@ -62,7 +62,7 @@ class TestTurnManager:
     
     def test_next_turn_wraps_around(self, turn_manager):
         """Test turno torna a zero dopo ultimo"""
-        # Passa 3 turni (P1, P2, Enemy)
+        
         turn_manager.next_turn()
         turn_manager.next_turn()
         turn_manager.next_turn()
@@ -76,7 +76,7 @@ class TestTurnManager:
     
     def test_is_battle_active_players_dead(self, sample_players, sample_enemy):
         """Test battaglia finita se giocatori morti"""
-        # Uccidi tutti i giocatori
+        
         for player in sample_players:
             player.hp = 0
             player.is_alive = False
@@ -124,7 +124,7 @@ class TestTurnManager:
         """Test ottenimento tutti combattenti vivi"""
         alive = turn_manager.get_alive_combatants()
         
-        assert len(alive) == 3  # 2 players + 1 enemy
+        assert len(alive) == 3  
     
     def test_get_battle_status(self, turn_manager):
         """Test ottenimento stato battaglia"""
@@ -139,12 +139,12 @@ class TestTurnManager:
     
     def test_reset(self, turn_manager):
         """Test reset manager"""
-        # Avanza alcuni turni
+        
         turn_manager.next_turn()
         turn_manager.next_turn()
         turn_manager.round_number = 5
         
-        # Reset
+        
         turn_manager.reset()
         
         assert turn_manager.round_number == 1
@@ -152,11 +152,11 @@ class TestTurnManager:
     
     def test_skip_dead_combatants(self, turn_manager, sample_players):
         """Test che salta combattenti morti"""
-        # Uccidi il primo giocatore
+        
         sample_players[0].hp = 0
         sample_players[0].is_alive = False
         
-        # Il turno corrente dovrebbe saltare P1 e andare a P2
+        
         current = turn_manager.get_current_combatant()
         
         assert current.name == "Hero2"

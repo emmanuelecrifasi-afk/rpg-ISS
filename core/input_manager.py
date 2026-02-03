@@ -47,24 +47,11 @@ class InputManager:
                 self.action_map[alias] = main_action
     
     def parse(self, user_input: str) -> Optional[Command]:
-        """
-        Parsea l'input dell'utente e restituisce un Command
         
-        Args:
-            user_input: Stringa di input dell'utente
-            
-        Returns:
-            Command parsato o None se l'input non è valido
-            
-        Esempi:
-            "p1 atk" -> Command(action='atk', target='p1')
-            "status" -> Command(action='status')
-            "p2 heal 50" -> Command(action='heal', target='p2', args=['50'])
-        """
         if not user_input or not user_input.strip():
             return None
         
-        # Pulisci e dividi l'input
+        
         parts = user_input.strip().lower().split()
         
         if len(parts) == 0:

@@ -9,7 +9,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-# Aggiungi la root del progetto al path
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from models.party import Party
@@ -54,7 +54,7 @@ class TestIntegrationCSV:
         if not csv_file.exists():
             pytest.skip(f"File CSV non trovato: {csv_file}")
 
-        # Leggi i comandi dal CSV
+        
         commands = []
         with open(csv_file, 'r', encoding='utf-8') as f:
             reader = csv.DictReader(f)
@@ -68,16 +68,16 @@ class TestIntegrationCSV:
             "results": []
         }
 
-        # Esegui ogni comando
+        
         for i, row in enumerate(commands, 1):
             command_text = row.get('command', '').strip()
             expected_result = row.get('expected_result', '').strip()
             description = row.get('description', '').strip()
 
-            # Parsea il comando
+            
             parsed_cmd = input_manager.parse(command_text)
 
-            # Prepara il risultato
+            
             result = {
                 "step": i,
                 "command": command_text,
@@ -87,13 +87,13 @@ class TestIntegrationCSV:
                 "party_state_before": self._get_party_state(sample_party)
             }
 
-            # Esegui il comando se valido
+            
             if parsed_cmd:
                 result["action"] = parsed_cmd.action
                 result["target"] = parsed_cmd.target
                 result["args"] = parsed_cmd.args
                 
-                # Simula l'esecuzione del comando
+                
                 execution_result = self._execute_command(parsed_cmd, sample_party)
                 result["execution"] = execution_result
             else:
@@ -102,14 +102,13 @@ class TestIntegrationCSV:
             result["party_state_after"] = self._get_party_state(sample_party)
             test_results["results"].append(result)
 
-        # Salva i risultati in JSON
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         output_file = test_results_dir / f"test_results_{timestamp}.json"
 
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(test_results, f, indent=2, ensure_ascii=False)
 
-        # Verifica che almeno alcuni comandi siano stati eseguiti correttamente
+        
         successful_commands = sum(1 for r in test_results["results"] if r["parsed"])
         assert successful_commands > 0, "Nessun comando è stato parsato correttamente"
 
@@ -147,13 +146,13 @@ class TestIntegrationCSV:
                 if not attacker.is_alive:
                     return {"status": "failed", "reason": "Character is KO"}
                     
-                # Trova un target casuale
+                
                 possible_targets = [c for c in party.characters if c != attacker and c.is_alive]
                 if not possible_targets:
                     return {"status": "failed", "reason": "No valid targets"}
                     
                 target = possible_targets[0]
-                damage = 25  # Danno fisso per testing
+                damage = 25  
                 actual_damage = target.take_damage(damage)
                 
                 return {
@@ -193,25 +192,25 @@ class TestIntegrationCSV:
 
     def test_save_party_snapshot(self, test_results_dir, sample_party):
         """Test salvataggio snapshot del party in JSON"""
-        # Modifica lo stato del party
+        
         sample_party.characters[0].take_damage(30)
         sample_party.characters[1].heal(10)
 
-        # Crea lo snapshot
+        
         snapshot = {
             "timestamp": datetime.now().isoformat(),
             "party": self._get_party_state(sample_party)
         }
 
-        # Salva in JSON
+        
         output_file = test_results_dir / "party_snapshot.json"
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(snapshot, f, indent=2, ensure_ascii=False)
 
-        # Verifica che il file esista
+        
         assert output_file.exists()
 
-        # Rileggi e verifica
+        
         with open(output_file, 'r', encoding='utf-8') as f:
             loaded = json.load(f)
 

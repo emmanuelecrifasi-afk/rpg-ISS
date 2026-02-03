@@ -10,7 +10,7 @@ from pathlib import Path
 project_root = Path(__file__).parent
 sys.path.insert(0, str(project_root))
 
-# Stampa per debug (opzionale)
+# Stampa per debug 
 print(f"\n[conftest.py] Project root: {project_root}")
 print(f"[conftest.py] sys.path[0]: {sys.path[0]}\n")
 

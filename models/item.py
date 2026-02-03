@@ -8,25 +8,25 @@ from enum import Enum
 
 class ItemType(Enum):
     """Tipi di oggetti"""
-    CONSUMABLE = "consumable"  # Oggetti consumabili (pozioni)
-    EQUIPMENT = "equipment"    # Equipaggiamento
-    KEY_ITEM = "key_item"      # Oggetti chiave
-    MATERIAL = "material"      # Materiali
+    CONSUMABLE = "consumable"  
+    EQUIPMENT = "equipment"    
+    KEY_ITEM = "key_item"      
+    MATERIAL = "material"      
 
 
 class ItemEffect(Enum):
     """Effetti degli oggetti"""
-    HEAL = "heal"              # Cura HP
-    RESTORE_MP = "restore_mp"  # Ripristina MP
-    DAMAGE = "damage"          # Infligge danno
-    BUFF_ATK = "buff_atk"      # Aumenta attacco
-    BUFF_DEF = "buff_def"      # Aumenta difesa
+    HEAL = "heal"              
+    RESTORE_MP = "restore_mp"  
+    DAMAGE = "damage"          
+    BUFF_ATK = "buff_atk"      
+    BUFF_DEF = "buff_def"      
 
 
 class Item:
     """Classe che rappresenta un oggetto"""
     
-    # Template oggetti predefiniti
+    #
     ITEM_TEMPLATES = {
         'health_potion': {
             'name': 'Pozione di Vita',

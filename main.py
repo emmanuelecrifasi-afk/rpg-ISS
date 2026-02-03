@@ -1,8 +1,3 @@
-"""
-RPG Game - Entry Point
-Sprint 0: Fondamenta & Architettura Dati
-"""
-
 from core.game_engine import GameEngine
 
 

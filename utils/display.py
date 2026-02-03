@@ -7,12 +7,12 @@ from models.character import Character
 
 
 def clear_screen():
-    """Pulisce lo schermo (simulato con newline)"""
+    """Pulisce lo schermo """
     print("\n" * 2)
 
 
 def print_separator(char="-", length=50):
-    """Stampa una linea separatrice"""
+    
     print(char * length)
 
 
@@ -52,7 +52,7 @@ def print_character_hp_bar(character: Character, bar_length: int = 20):
     
     bar = "█" * filled + "░" * empty
     
-    # Colore basato su HP (simulato con emoji)
+    # Colore basato su HP 
     if percentage > 66:
         status_icon = "🟢"
     elif percentage > 33:

@@ -1,6 +1,5 @@
 """
 Pygame Game Engine - Loop principale con grafica
-Sprint 4: The Big Switch
 """
 
 import pygame
@@ -35,35 +34,35 @@ class PygameGameEngine:
     
     def __init__(self):
         """Inizializza il game engine"""
-        # ... (codice grafico pygame.init, renderer... INVARIATO) ...
+        
         pygame.init()
         self.renderer = Renderer(width=1024, height=768, title="The Last Dream")
         self.ui_manager = UIManager(self.renderer)
 
-        # ... (party, world, battle... INVARIATO) ...
+        
         self.party = Party()
         self.world = None
         self.movement_manager = None
         self.current_battle = None
         
-        # --- NUOVA GESTIONE: I 4 LIVELLI ---
+        
         self.current_level_index = 0
-        # Assicurati che questi nomi corrispondano a come li hai salvati!
+        
         self.level_files = [
-            "map_01.json",      # 1. Tutorial
-            "map_maze.json",    # 2. Labirinto
-            "map_arena.json",   # 3. Arena
-            "map_large.json"    # 4. Boss Finale
+            "map_01.json",      
+            "map_maze.json",    
+            "map_arena.json",   
+            "map_large.json"    
         ]
         
         # --- STATO DEL GIOCO ---
         self.state = GameState.MENU
         self.running = False
         
-        # --- MENU (Con la logica Riprendi che abbiamo aggiunto) ---
+        
         self.menu_options = ["Nuova Partita", "Esci"]
         self.menu_selected = 0
-        self.previous_state = None  # Variabile per il tasto "Riprendi"
+        self.previous_state = None  
         
         # Inventory UI
         self.inventory_selected = 0
@@ -119,11 +118,11 @@ class PygameGameEngine:
         
         # Selezione (INVIO)
         elif key == pygame.K_RETURN:
-            # Recuperiamo COSA c'è scritto nell'opzione selezionata
+            
             selected_text = self.menu_options[self.menu_selected]
             
             if selected_text == "Riprendi":
-                # Se esiste uno stato precedente, tornaci
+                
                 if self.previous_state:
                     self.state = self.previous_state
             
@@ -133,7 +132,7 @@ class PygameGameEngine:
                 self.creation_phase = 0
                 self.temp_name = ""
                 self.temp_class_index = 0
-                self.party = Party() # Resetta anche il party!
+                self.party = Party() 
                 self.menu_options = ["Nuova Partita", "Esci"] # Resetta il menu
                 
             elif selected_text == "Esci":
@@ -224,7 +223,7 @@ class PygameGameEngine:
         
         # --- SELEZIONE (INVIO) ---
         elif key == pygame.K_RETURN:
-            # 1. LEGGI IL TESTO DELL'OPZIONE (NON USARE INDICI NUMERICI!)
+            
             selected_text = self.menu_options[self.menu_selected]
             
             
@@ -243,7 +242,7 @@ class PygameGameEngine:
                 self.temp_name = ""
                 self.temp_class_index = 0
                 self.party = Party() # Resetta il party
-                # Reset menu standard (toglie "Riprendi")
+                # Reset menu standard 
                 self.menu_options = ["Nuova Partita", "Esci"] 
                 
             elif selected_text == "Esci":
@@ -255,12 +254,12 @@ class PygameGameEngine:
         """Input per creazione personaggi"""
         current_time = pygame.time.get_ticks()
         
-        # Navigazione classi (SOLO FRECCE, rimossi A e D)
-        if key == pygame.K_LEFT:  # Rimosso "or key == pygame.K_a"
+        # Navigazione classi 
+        if key == pygame.K_LEFT:  
             self.temp_class_index = (self.temp_class_index - 1) % len(self.available_classes)
             self.key_cooldown = current_time
         
-        elif key == pygame.K_RIGHT:  # Rimosso "or key == pygame.K_d"
+        elif key == pygame.K_RIGHT:  
             self.temp_class_index = (self.temp_class_index + 1) % len(self.available_classes)
             self.key_cooldown = current_time
         
@@ -283,18 +282,18 @@ class PygameGameEngine:
                 # SETUP COMPLETATO -> VAI AL MENU LIVELLI
                 self._setup_game()           # Inizializza variabili di gioco
                 self._setup_story_intro()    # Prepara il testo della storia
-                self.state = GameState.STORY_INTRO  # <--- MODIFICA QUI
+                self.state = GameState.STORY_INTRO  
             
             self.key_cooldown = current_time
         
-        # Ora A e D verranno catturati qui sotto
+        
         elif key in range(pygame.K_a, pygame.K_z + 1) or key == pygame.K_SPACE:
             if len(self.temp_name) < 12:
                 char = pygame.key.name(key)
                 if key == pygame.K_SPACE:
                     char = " "
                 elif len(self.temp_name) == 0:
-                    char = char.upper() # Prima lettera maiuscola
+                    char = char.upper() 
                 self.temp_name += char
                 self.key_cooldown = current_time - 100
     
@@ -304,24 +303,21 @@ class PygameGameEngine:
         height = self.renderer.height
         current_time = pygame.time.get_ticks()
         
-        # 1. DISEGNA LO SFONDO SCENICO (Invece del nero)
-        # Assicurati che self.ui_manager sia accessibile qui
+        
         self.ui_manager.draw_story_background()
         
-        # 2. BOX DI TESTO (Stile RPG)
+        # 2. BOX DI TESTO 
         box_height = 200
         box_y = height - box_height - 20
         
-        # Sfondo box semitrasparente scuro
-        # Nota: Pygame base non supporta alpha sui rect direttamente senza surface, 
-        # quindi usiamo un colore solido scuro che sta bene con lo sfondo.
+        
         pygame.draw.rect(self.renderer.screen, (15, 15, 25), (40, box_y, width - 80, box_height), 0, 5)
         
         # Bordo decorativo doppio
         pygame.draw.rect(self.renderer.screen, (100, 100, 150), (40, box_y, width - 80, box_height), 3, 5)
         pygame.draw.rect(self.renderer.screen, (255, 255, 255), (45, box_y + 5, width - 90, box_height - 10), 1, 5)
         
-        # 3. LOGICA MACCHINA DA SCRIVERE (Invariata)
+        # 3. LOGICA MACCHINA DA SCRIVERE 
         target_text = self.intro_lines[self.current_intro_line]
         
         if not self.text_complete:
@@ -333,13 +329,13 @@ class PygameGameEngine:
                     self.text_complete = True
         
         # 4. DISEGNA IL TESTO
-        # Disegniamo il testo riga per riga se è troppo lungo
+        
         self.renderer.draw_text(self.text_buffer, 70, box_y + 40, Color.WHITE, "medium", centered=False)
         
-        # 5. INDICATORE "PREMI INVIO" (Lampeggiante)
+        # 5. INDICATORE "PREMI INVIO" 
         if self.text_complete:
             if (current_time // 500) % 2 == 0:
-                # Triangolino in basso a destra
+                #
                 pygame.draw.polygon(self.renderer.screen, Color.YELLOW, [
                     (width - 80, height - 60), 
                     (width - 60, height - 60), 
@@ -430,14 +426,14 @@ class PygameGameEngine:
             self._try_move('d')
             self.key_cooldown = current_time
         
-        # Altri comandi
+        
         elif key == pygame.K_i:
             self.state = GameState.INVENTORY
             self.inventory_selected = 0
             self.key_cooldown = current_time
         
         elif key == pygame.K_ESCAPE:
-            self.previous_state = self.state  # <--- IMPORTANTE: Salva dove eri!
+            self.previous_state = self.state  
             self.state = GameState.MENU
             self.menu_options = ["Riprendi", "Nuova Partita", "Esci"]
             self.menu_selected = 0
@@ -487,7 +483,7 @@ class PygameGameEngine:
         """Input nell'inventario (FIX: Recupera ID corretti dal dizionario)"""
         current_time = pygame.time.get_ticks()
         
-        # Recuperiamo la lista come coppie (ID, Oggetto) per non perdere l'ID
+        
         items_data = list(self.party.inventory.items.items())
         
         # Navigazione SU
@@ -513,7 +509,7 @@ class PygameGameEngine:
                 # 1. Recupera ID e Oggetto dalla tupla
                 selected_id, selected_item = items_data[self.inventory_selected]
                 
-                # 2. Logica effetto basata sul nome (più sicuro)
+                # 2. Logica effetto basata sul nome 
                 used = False
                 name_lower = selected_item.name.lower()
                 
@@ -538,9 +534,9 @@ class PygameGameEngine:
                 
                 # 3. Se usato, rimuovi usando l'ID corretto
                 if used:
-                    self.party.inventory.remove_item(selected_id, 1) # Ora selected_id è corretto
+                    self.party.inventory.remove_item(selected_id, 1) 
                     
-                    # Gestione indice se la lista si accorcia
+                    
                     items_after = list(self.party.inventory.items.items())
                     if self.inventory_selected >= len(items_after) and len(items_after) > 0:
                         self.inventory_selected = len(items_after) - 1
@@ -586,14 +582,14 @@ class PygameGameEngine:
                 # 1. Calcola quale sarebbe il prossimo livello
                 next_level_idx = self.current_level_index + 1
                 
-                # 2. Sbloccalo (se non lo era già)
+                # 2. Sblocca il livello
                 if next_level_idx > self.max_unlocked_index:
                     self.max_unlocked_index = next_level_idx
                     self._show_message(f"🔓 {self.level_names[next_level_idx]} Sbloccato!")
                 
-                # 3. IMPORTANTE: NON caricare il livello! Cambia solo lo stato al MENU.
+                
                 self.state = GameState.LEVEL_SELECTION
-                self.level_selection_index = next_level_idx # Sposta il cursore sul nuovo livello
+                self.level_selection_index = next_level_idx 
                 
             else:
                 # Era l'ultimo livello: Vittoria Finale
@@ -613,12 +609,10 @@ class PygameGameEngine:
             if result.victory:
                 self._show_message("🎉 VITTORIA! La via è libera.")
                 
-                # --- NUOVO: RIMUOVI IL NEMICO DALLA MAPPA ---
-                # Dato che il combattimento scatta quando "entri" nella cella,
-                # la posizione attuale del giocatore è quella del nemico.
+               
                 px, py = self.movement_manager.get_position()
                 self.world.grid[py][px] = 0  # 0 = Cella Vuota
-                # --------------------------------------------
+                
                 
                 self.state = GameState.EXPLORATION
                 self.current_battle = None
@@ -661,7 +655,7 @@ class PygameGameEngine:
         
         self.current_battle = Battle(self.party, boss)
         
-        # 2. Dialogo Minaccioso
+        # 2. Dialogo 
         self.intro_lines = [
             "...",
             "La terra trema sotto i vostri piedi!",
@@ -693,7 +687,7 @@ class PygameGameEngine:
                 enemy_name = self.current_battle.enemy.name
                 self._show_message(f"🎉 VITTORIA! {enemy_name} sconfitto. LEVEL UP: +HP/MP!")
                 
-                # --- CASO A: È IL DRAGO ANTICO (BOSS FINALE) ---
+                # CASO A: È IL DRAGO ANTICO (BOSS FINALE) 
                 if enemy_name == "DRAGO ANTICO":
                     self.final_boss_defeated = True
                     
@@ -721,12 +715,12 @@ class PygameGameEngine:
 
                 # --- CASO B: È UN NEMICO NORMALE ---
                 else:
-                    # 1. IMPORTANTE: Rimuovi il nemico dalla mappa (2 -> 0)
+                    
                     px, py = self.movement_manager.get_position()
                     if self.world:
-                        self.world.grid[py][px] = 0  # <--- Questo risolve la casella rossa!
+                        self.world.grid[py][px] = 0  
                     
-                    # 2. Torna all'esplorazione
+                    
                     self.state = GameState.EXPLORATION
                     self.current_battle = None
                     return
@@ -735,7 +729,7 @@ class PygameGameEngine:
                 self.state = GameState.GAME_OVER
             return
         
-        # 2. SE LA BATTAGLIA CONTINUA...
+        # 2. SE LA BATTAGLIA CONTINUA
         self.current_battle.turn_manager.next_turn()
         
         # 3. TURNO NEMICO (IA)
@@ -748,7 +742,7 @@ class PygameGameEngine:
             result = self.current_battle.check_battle_end()
             if result:
                 if result.victory:
-                    # Caso raro (es. nemico muore per contraccolpo)
+                    
                     self._show_message("🎉 VITTORIA!")
                     if self.current_battle.enemy.name != "DRAGO ANTICO":
                         px, py = self.movement_manager.get_position()
@@ -769,7 +763,7 @@ class PygameGameEngine:
             return True
             
         for row in self.world.grid:
-            if 2 in row:  # 2 è il codice per DANGER/Nemico
+            if 2 in row:  
                 return False
         return True
     
@@ -790,7 +784,7 @@ class PygameGameEngine:
                 self._show_message(f"CAPITOLO {self.current_level_index + 1}: {self.world.name}")
             else:
                 print(f"⚠️ Errore: Mappa {filename} non trovata!")
-                # Fallback di emergenza
+                
                 self.world = World(grid=[[3,4]], name="Livello Buggato")
             
             # Collega il movimento al nuovo mondo caricato
@@ -798,7 +792,7 @@ class PygameGameEngine:
 
     def _setup_game(self):
         """Setup iniziale del gioco"""
-        # Reset inventario e party
+        
         self.party.inventory.items.clear()
         self.party.inventory.add_item('health_potion', 3)
         self.party.inventory.add_item('mana_potion', 2)
@@ -806,15 +800,15 @@ class PygameGameEngine:
         # Reset livelli
         self.current_level_index = 0
         
-        # --- NUOVO: Flag Boss Finale ---
+        
         self.final_boss_defeated = False
-        # -------------------------------
+        
         
         self._load_current_level()
     
     def _update(self, dt):
         """Aggiorna la logica del gioco"""
-        # Aggiorna timer messaggio
+        
         if self.message_timer > 0 and pygame.time.get_ticks() > self.message_timer:
             self.message = ""
             self.message_timer = 0
@@ -855,31 +849,31 @@ class PygameGameEngine:
             self.ui_manager.draw_message_box(self.message)
     
     def _render_menu(self):
-        """Renderizza il menu principale (Design Pulito: Solo Griglia e Testo)"""
+        """Renderizza il menu principale"""
         width = self.renderer.width
         height = self.renderer.height
         
         # --- 1. SFONDO ---
-        # Colore base viola scuro/notte
+        
         self.renderer.clear((15, 10, 25))
         
-        # Disegna una griglia sottile (effetto pavimento dungeon)
+        # Disegna una griglia sottile 
         grid_color = (25, 20, 35)
         for x in range(0, width, 50):
             pygame.draw.line(self.renderer.screen, grid_color, (x, 0), (x, height), 1)
         for y in range(0, height, 50):
             pygame.draw.line(self.renderer.screen, grid_color, (0, y), (width, y), 1)
             
-        # (RIMOSSO: Cerchio di sfondo)
+        
 
         # --- 2. TITOLO ---
         title_text = "THE LAST DREAM"
         subtitle_text = "Il Risveglio"
         title_y = 120
         
-        # (RIMOSSO: Rombo decorativo)
         
-        # Ombra del titolo (Nera, spostata di 4 pixel per effetto profondità)
+        
+        # Ombra del titolo (
         self.renderer.draw_text(title_text, width // 2 + 4, title_y + 4, Color.BLACK, "large", centered=True)
         # Titolo vero (Oro)
         self.renderer.draw_text(title_text, width // 2, title_y, Color.YELLOW, "large", centered=True)
@@ -895,22 +889,20 @@ class PygameGameEngine:
             is_selected = (i == self.menu_selected)
             
             if is_selected:
-                # STILE SELEZIONATO
-                # Box sfondo arrotondato
+                
                 box_rect = (width//2 - 200, opt_y - 15, 400, 60)
                 pygame.draw.rect(self.renderer.screen, (40, 40, 80), box_rect, 0, 15) 
                 pygame.draw.rect(self.renderer.screen, Color.YELLOW, box_rect, 2, 15) # Bordo Oro
                 
                 # Decorazioni laterali (Spade)
-                # Nota: Se vedi dei rettangoli [] invece delle spade, il font non supporta l'icona.
-                # In tal caso puoi sostituire "⚔" con ">" e "<"
+                
                 self.renderer.draw_text("⚔", width//2 - 170, opt_y + 5, Color.YELLOW, "medium", centered=True)
                 self.renderer.draw_text("⚔", width//2 + 170, opt_y + 5, Color.YELLOW, "medium", centered=True)
                 
                 # Testo Bianco Acceso
                 self.renderer.draw_text(option.upper(), width // 2, opt_y + 5, Color.WHITE, "medium", centered=True)
             else:
-                # STILE NON SELEZIONATO (Grigio)
+                
                 self.renderer.draw_text(option, width // 2, opt_y + 5, (100, 100, 120), "medium", centered=True)
         
         # --- 4. FOOTER ---
@@ -938,7 +930,7 @@ class PygameGameEngine:
             
             # Colore base
             if not is_unlocked:
-                color = (100, 100, 100) # Grigio scuro (Bloccato)
+                color = (100, 100, 100) 
                 prefix = "🔒 "
             elif is_selected:
                 color = Color.YELLOW
@@ -987,7 +979,7 @@ class PygameGameEngine:
             self.key_cooldown = current_time
 
     def _render_char_creation(self):
-        """Renderizza la creazione personaggi (Stile Card RPG)"""
+        """Renderizza la creazione personaggi"""
         width = self.renderer.width
         height = self.renderer.height
         
@@ -1001,7 +993,7 @@ class PygameGameEngine:
         pygame.draw.line(self.renderer.screen, Color.GRAY, (50, 80), (width-50, 80), 1)
         
         # --- BOX SINISTRO: NOME ---
-        # Disegniamo un pannello per l'input
+        
         input_y = 130
         self.renderer.draw_text("1. SCEGLI IL NOME", width // 2, input_y, Color.LIGHT_BLUE, "medium", centered=True)
         
@@ -1011,7 +1003,7 @@ class PygameGameEngine:
         pygame.draw.rect(self.renderer.screen, (30, 30, 40), (box_x, input_y + 40, box_width, 50))
         pygame.draw.rect(self.renderer.screen, Color.WHITE, (box_x, input_y + 40, box_width, 50), 2)
         
-        # Testo Nome (con cursore lampeggiante simulato)
+        # Testo Nome 
         cursor = "_" if (pygame.time.get_ticks() // 500) % 2 == 0 else ""
         name_display = (self.temp_name + cursor) if len(self.temp_name) < 12 else self.temp_name
         self.renderer.draw_text(name_display, width // 2, input_y + 55, Color.GREEN, "medium", centered=True)
@@ -1041,19 +1033,18 @@ class PygameGameEngine:
         pygame.draw.rect(self.renderer.screen, (25, 25, 35), (panel_x, stats_y, panel_w, 250), 0, 10)
         pygame.draw.rect(self.renderer.screen, (60, 60, 80), (panel_x, stats_y, panel_w, 250), 2, 10)
         
-        # Colonne Statistiche (usiamo il nuovo metodo helper)
-        # HP e MP
+        
         self.ui_manager.draw_stat_bar_labeled(panel_x + 50, stats_y + 30, 200, 15, class_info['max_hp'], 200, Color.GREEN, "HP ")
         self.ui_manager.draw_stat_bar_labeled(panel_x + 320, stats_y + 30, 200, 15, class_info['max_mp'], 100, Color.BLUE, "MP ")
         
-        # ATK e MAG (assumiamo valori max ragionevoli per le barre, es. 20)
+        
         self.ui_manager.draw_stat_bar_labeled(panel_x + 50, stats_y + 70, 200, 15, class_info['atk_bonus'], 15, Color.ORANGE, "ATK")
         self.ui_manager.draw_stat_bar_labeled(panel_x + 320, stats_y + 70, 200, 15, class_info['mag_bonus'], 15, Color.PURPLE, "MAG")
         
         # Descrizione
         pygame.draw.line(self.renderer.screen, (60, 60, 80), (panel_x + 20, stats_y + 110), (panel_x + panel_w - 20, stats_y + 110), 1)
         
-        desc_lines = class_info['description'].split('.') # Divide frasi lunghe se ci sono punti
+        desc_lines = class_info['description'].split('.') 
         text_y = stats_y + 130
         for line in desc_lines:
             if line.strip():
@@ -1068,7 +1059,7 @@ class PygameGameEngine:
         if not self.world or not self.movement_manager:
             return
         
-        # Disegna mappa (ORA PASSIAMO self.party!)
+        # Disegna mappa 
         pos = self.movement_manager.get_position()
         self.renderer.draw_world_view(self.world, pos, self.party, offset_x=262, offset_y=150)
         
@@ -1110,7 +1101,7 @@ class PygameGameEngine:
         width = self.renderer.width
         height = self.renderer.height
         
-        # Sfondo rossastro scuro
+        # Sfondo 
         self.renderer.clear((20, 0, 0))
         
         self.renderer.draw_text("SCONFITTA...", width // 2, height // 2 - 50, Color.RED, "large", centered=True)

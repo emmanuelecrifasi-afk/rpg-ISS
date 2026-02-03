@@ -55,7 +55,7 @@ class TestRenderer:
     def test_clear_screen(self, renderer):
         """Test pulizia schermo"""
         renderer.clear(Color.BLACK)
-        # Verifica che non ci siano eccezioni
+        
         assert True
     
     def test_draw_text(self, renderer):
@@ -63,7 +63,7 @@ class TestRenderer:
         renderer.clear()
         renderer.draw_text("Test", 100, 100, Color.WHITE, "medium", centered=False)
         renderer.draw_text("Centered", 400, 300, Color.YELLOW, "large", centered=True)
-        # Verifica che non ci siano eccezioni
+        
         assert True
     
     def test_draw_rect(self, renderer):
@@ -78,8 +78,7 @@ class TestRenderer:
         renderer.clear()
         player_pos = (0, 0)
         
-        # Chiamiamo la funzione passandole il 'test_party' (che prima mancava)
-        # Se la funzione viene eseguita senza errori (crash), il test passa.
+        
         renderer.draw_world_view(simple_world, player_pos, test_party, offset_x=50, offset_y=50)
         
         assert True
@@ -87,13 +86,13 @@ class TestRenderer:
     def test_draw_hp_bar(self, renderer):
         """Test barra HP"""
         renderer.clear()
-        # HP piena
+        
         renderer.draw_hp_bar(100, 100, 200, 30, 100, 100)
-        # HP media
+        
         renderer.draw_hp_bar(100, 150, 200, 30, 50, 100)
-        # HP bassa
+        
         renderer.draw_hp_bar(100, 200, 200, 30, 20, 100)
-        # HP zero
+        
         renderer.draw_hp_bar(100, 250, 200, 30, 0, 100)
         assert True
     

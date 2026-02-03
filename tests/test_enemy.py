@@ -97,7 +97,7 @@ class TestEnemy:
         
         percentage = enemy.get_hp_percentage()
         
-        assert 49 <= percentage <= 51  # ~50%
+        assert 49 <= percentage <= 51  
     
     def test_get_hp_percentage_full(self):
         """Test percentuale HP pieno"""

@@ -42,14 +42,14 @@ class UIManager:
         SKIN = (255, 200, 180)
         cls = str(char.character_class).upper()
 
-        # --- 1. GUERRIERO (WARRIOR) - VERSIONE EPIC ---
+        # --- 1. GUERRIERO (WARRIOR) ---
         if "WARRIOR" in cls or "GUERRIERO" in cls or "FENDENTE" in cls:
             PLATINUM = (229, 228, 226)
             STEEL_DARK = (112, 128, 144)
             GOLD_TRIM = (255, 215, 0)
             CRIMSON = (139, 0, 0)
             
-            # Mantello Epico (Largo e imponente dietro)
+            # Mantello 
             pygame.draw.polygon(self.renderer.screen, CRIMSON, [
                 (x - 20, draw_y - 35), # Spalla SX
                 (x + 20, draw_y - 35), # Spalla DX
@@ -57,28 +57,28 @@ class UIManager:
                 (x - 35, draw_y + 20)  # Fondo SX largo
             ])
             
-            # Corpo (Corazza a Piastre Platino)
+            # Corpo (Corazza)
             pygame.draw.rect(self.renderer.screen, PLATINUM, (x - 22, draw_y - 35, 44, 50), 0, 8)
-            # Dettaglio pettorale (V d'oro)
+            # Dettaglio pettorale
             pygame.draw.line(self.renderer.screen, GOLD_TRIM, (x - 22, draw_y - 30), (x, draw_y - 10), 3)
             pygame.draw.line(self.renderer.screen, GOLD_TRIM, (x + 22, draw_y - 30), (x, draw_y - 10), 3)
-            # Cintura massiccia
+            # Cintura 
             pygame.draw.rect(self.renderer.screen, STEEL_DARK, (x - 22, draw_y - 5, 44, 6))
             pygame.draw.circle(self.renderer.screen, GOLD_TRIM, (x, draw_y - 2), 5) # Fibbia
 
-            # Spallacci Giganti (A strati)
+            # Spallacci 
             pygame.draw.circle(self.renderer.screen, PLATINUM, (x - 28, draw_y - 32), 14)
             pygame.draw.circle(self.renderer.screen, PLATINUM, (x + 28, draw_y - 32), 14)
             pygame.draw.circle(self.renderer.screen, GOLD_TRIM, (x - 28, draw_y - 32), 6) # Borchia oro
             pygame.draw.circle(self.renderer.screen, GOLD_TRIM, (x + 28, draw_y - 32), 6)
 
-            # Testa (Grande Elmo da Cavaliere)
+            # Testa 
             pygame.draw.circle(self.renderer.screen, PLATINUM, (x, draw_y - 48), 16)
             # Visiera a croce scura
             pygame.draw.line(self.renderer.screen, (20, 20, 20), (x - 12, draw_y - 48), (x + 12, draw_y - 48), 3) # Orizzontale
             pygame.draw.line(self.renderer.screen, (20, 20, 20), (x, draw_y - 58), (x, draw_y - 38), 3) # Verticale
             
-            # Cresta Rossa imponente (Stile Sparta/Romano)
+            # Cresta Rossa 
             pygame.draw.polygon(self.renderer.screen, (220, 20, 60), [
                 (x - 5, draw_y - 60), 
                 (x + 5, draw_y - 60), 
@@ -86,33 +86,33 @@ class UIManager:
                 (x - 10, draw_y - 65)  # Punta in alto
             ])
 
-            # Scudo a Torre (Mano SX) - Rettangolare e pesante
+            # Scudo  
             pygame.draw.rect(self.renderer.screen, (20, 30, 60), (x - 50, draw_y - 25, 25, 50), 0, 4) # Blu notte
             pygame.draw.rect(self.renderer.screen, GOLD_TRIM, (x - 50, draw_y - 25, 25, 50), 3, 4) # Bordo Oro
             pygame.draw.line(self.renderer.screen, GOLD_TRIM, (x - 50, draw_y - 25), (x - 25, draw_y + 25), 2) # Decorazione diagonale
 
-            # Spadone (Mano DX) - Lama larga
+            # Spadone 
             pygame.draw.rect(self.renderer.screen, (240, 240, 240), (x + 35, draw_y - 70, 10, 55)) # Lama larga
             pygame.draw.line(self.renderer.screen, (100, 100, 100), (x + 40, draw_y - 70), (x + 40, draw_y - 20), 1) # Scanalatura lama
-            # Guardia dorata
+            
             pygame.draw.line(self.renderer.screen, GOLD_TRIM, (x + 25, draw_y - 15), (x + 55, draw_y - 15), 5)
 
-        # --- 2. LADRO (ROGUE) - DARK STYLE (Senza occhi) ---
+        # --- 2. LADRO (ROGUE)  ---
         elif "ROGUE" in cls or "LADRO" in cls:
             CLOTH_DARK = (40, 40, 45)
             CLOTH_ACCENT = (70, 70, 80)
             SCARF = (30, 30, 30)
             
-            # Mantello corto scuro
+            # Mantello 
             pygame.draw.polygon(self.renderer.screen, (20, 20, 20), [(x - 15, draw_y - 30), (x + 15, draw_y - 30), (x, draw_y + 10)])
             # Corpo
             pygame.draw.rect(self.renderer.screen, CLOTH_DARK, (x - 15, draw_y - 35, 30, 45), 0, 5)
-            # Cintura e borselli
+            # Cintura 
             pygame.draw.rect(self.renderer.screen, (60, 50, 40), (x - 15, draw_y - 5, 30, 6))
             pygame.draw.rect(self.renderer.screen, (80, 70, 50), (x + 5, draw_y - 2, 6, 8))
-            # Testa (Cappuccio profondo)
+            # Testa 
             pygame.draw.circle(self.renderer.screen, CLOTH_ACCENT, (x, draw_y - 45), 15)
-            # Ombra nera (No occhi)
+            # Ombra nera 
             pygame.draw.ellipse(self.renderer.screen, (0, 0, 0), (x - 10, draw_y - 48, 20, 18))
             # Sciarpa
             pygame.draw.rect(self.renderer.screen, SCARF, (x - 12, draw_y - 35, 24, 8), 0, 2)
@@ -122,7 +122,7 @@ class UIManager:
             pygame.draw.line(self.renderer.screen, (180, 180, 180), (x + 25, draw_y - 10), (x + 25, draw_y + 10), 3)
             pygame.draw.line(self.renderer.screen, (100, 50, 0), (x + 28, draw_y - 5), (x + 22, draw_y - 5), 4)
 
-        # --- 3. PALADINO (PALADIN) - SACRO ---
+        # --- 3. PALADINO (PALADIN) ---
         elif "PALADIN" in cls or "SENTINELLA" in cls:
             PLATE_WHITE = (240, 240, 255)
             GOLD_TRIM = (255, 223, 0)
@@ -139,7 +139,7 @@ class UIManager:
             pygame.draw.circle(self.renderer.screen, PLATE_WHITE, (x, draw_y - 45), 15)
             pygame.draw.line(self.renderer.screen, GOLD_TRIM, (x, draw_y - 60), (x, draw_y - 35), 2)
             pygame.draw.rect(self.renderer.screen, (0, 0, 0), (x - 8, draw_y - 48, 16, 3))
-            # Scudo Crociato
+            # Scudo 
             pygame.draw.rect(self.renderer.screen, PLATE_WHITE, (x - 45, draw_y - 25, 24, 45), 0, 5)
             pygame.draw.rect(self.renderer.screen, GOLD_TRIM, (x - 45, draw_y - 25, 24, 45), 3, 5)
             pygame.draw.line(self.renderer.screen, (200, 0, 0), (x - 33, draw_y - 20), (x - 33, draw_y + 15), 4)
@@ -148,7 +148,7 @@ class UIManager:
             pygame.draw.line(self.renderer.screen, (100, 60, 20), (x + 30, draw_y + 15), (x + 30, draw_y - 35), 4)
             pygame.draw.rect(self.renderer.screen, (150, 150, 150), (x + 20, draw_y - 45, 20, 15))
 
-        # --- 4. RANGER - ARCIERE DEI BOSCHI ---
+        # --- 4. RANGER  ---
         elif "RANGER" in cls or "ARCHER" in cls or "CACCIATORE" in cls:
             CLOAK_GREEN = (40, 80, 40)
             LEATHER = (139, 69, 19)
@@ -167,7 +167,7 @@ class UIManager:
             pygame.draw.arc(self.renderer.screen, (100, 50, 0), (x - 45, draw_y - 40, 30, 70), 3.14, 6.28, 3)
             pygame.draw.line(self.renderer.screen, (200, 200, 200), (x - 45, draw_y - 5), (x - 15, draw_y - 5), 1)
 
-        # --- 5. MAGO (MAGE) - INVARIATO ---
+        # --- 5. MAGO (MAGE)  ---
         elif "MAGE" in cls or "MAGO" in cls or "ARCANA" in cls:
             ROBE_PURPLE = (75, 0, 130)
             ROBE_GOLD = (255, 215, 0)
@@ -185,7 +185,7 @@ class UIManager:
             part_y = staff_top_y + int(math.cos(pygame.time.get_ticks()/100) * 10)
             pygame.draw.circle(self.renderer.screen, (255, 255, 255), (x + 45, part_y), 2)
 
-        # FALLBACK
+        
         else:
             pygame.draw.rect(self.renderer.screen, (100, 100, 100), (x - 20, draw_y - 35, 40, 50))
             pygame.draw.circle(self.renderer.screen, SKIN, (x, draw_y - 45), 14)
@@ -200,16 +200,13 @@ class UIManager:
             pygame.draw.line(self.renderer.screen, (255, 0, 0), (x+20, draw_y-20), (x-20, draw_y+20), 5)
     
     def _draw_enemy_sprite(self, x, y, size, name):
-        """
-        Bestiario Grafico "Deluxe":
-        Disegna i nemici con dettagli avanzati, armi ed effetti visivi.
-        """
+        
         x = int(x)
         y = int(y)
         center_x = x + size // 2
         center_y = y + size // 2
         
-        # Animazione "Respiro" e "Galleggiamento"
+        # Animazioni
         import math
         time_val = pygame.time.get_ticks()
         breath = int(math.sin(time_val / 200) * 3)
@@ -220,7 +217,7 @@ class UIManager:
         
         name_upper = name.upper()
 
-        # --- 1. DRAGHI (BOSS & NORMALI) ---
+        # --- 1. DRAGHI  ---
         if "DRAGO" in name_upper:
             # Setup Colori
             if "ANTICO" in name_upper: # BOSS
@@ -231,25 +228,25 @@ class UIManager:
                 HORN = (255, 255, 255)     # Avorio
                 smoke_col = (255, 255, 255)
             else: # NORMALE
-                BODY = (180, 30, 30)       # Rosso Sangue
-                WING = (100, 0, 0)         # Rosso Scuro
+                BODY = (180, 30, 30)       # Rosso
+                WING = (100, 0, 0)         # Rosso 
                 BELLY = (220, 100, 100)    # Rosato
                 EYE = (255, 255, 0)        # Giallo
-                HORN = (40, 40, 40)        # Grigio scuro
+                HORN = (40, 40, 40)        # Grigio 
                 smoke_col = (100, 100, 100)
 
-            # Ali Grandi e Spinose
-            wing_y = center_draw_y - 20 + (breath * 2) # Le ali si muovono di più
+            # Ali 
+            wing_y = center_draw_y - 20 + (breath * 2) 
             pygame.draw.polygon(self.renderer.screen, WING, [(center_x, wing_y), (center_x - 140, wing_y - 80), (center_x - 40, wing_y + 60)])
             pygame.draw.polygon(self.renderer.screen, WING, [(center_x, wing_y), (center_x + 140, wing_y - 80), (center_x + 40, wing_y + 60)])
             
-            # Coda con punta
+            # Coda 
             pygame.draw.polygon(self.renderer.screen, WING, [(center_x - 15, center_draw_y + 40), (center_x + 15, center_draw_y + 40), (center_x, center_draw_y + 130)])
-            pygame.draw.circle(self.renderer.screen, HORN, (center_x, center_draw_y + 130), 8) # Punta coda
+            pygame.draw.circle(self.renderer.screen, HORN, (center_x, center_draw_y + 130), 8) 
             
-            # Corpo massiccio
+            # Corpo 
             pygame.draw.ellipse(self.renderer.screen, BODY, (center_x - 50, center_draw_y - 40, 100, 110))
-            # Pancia a scaglie (righe orizzontali)
+            # Pancia a scaglie 
             pygame.draw.ellipse(self.renderer.screen, BELLY, (center_x - 25, center_draw_y - 20, 50, 80))
             for i in range(0, 60, 15):
                 pygame.draw.line(self.renderer.screen, BODY, (center_x - 15, center_draw_y - 10 + i), (center_x + 15, center_draw_y - 10 + i), 2)
@@ -259,65 +256,65 @@ class UIManager:
             head_points = [(center_x, head_y - 40), (center_x - 35, head_y), (center_x, head_y + 40), (center_x + 35, head_y)]
             pygame.draw.polygon(self.renderer.screen, BODY, head_points)
             
-            # Occhi Cattivi (fessura)
+            # Occhi 
             pygame.draw.circle(self.renderer.screen, EYE, (center_x - 15, head_y), 6)
             pygame.draw.circle(self.renderer.screen, EYE, (center_x + 15, head_y), 6)
             pygame.draw.line(self.renderer.screen, (0,0,0), (center_x - 15, head_y - 3), (center_x - 12, head_y + 3), 2) # Pupilla
             pygame.draw.line(self.renderer.screen, (0,0,0), (center_x + 15, head_y - 3), (center_x + 18, head_y + 3), 2)
             
-            # Corna Curve
+            # Corna
             pygame.draw.line(self.renderer.screen, HORN, (center_x - 20, head_y - 20), (center_x - 50, head_y - 50), 5)
             pygame.draw.line(self.renderer.screen, HORN, (center_x + 20, head_y - 20), (center_x + 50, head_y - 50), 5)
 
-            # Fumo (Particelle)
+            # Fumo 
             off = (time_val // 150) % 5 * 4
             pygame.draw.circle(self.renderer.screen, smoke_col, (center_x - 15, head_y + 30 + off), 5 - off//4)
             pygame.draw.circle(self.renderer.screen, smoke_col, (center_x + 15, head_y + 30 + off), 5 - off//4)
 
-        # --- 2. ORCO (Guerriero Tribale) ---
+        # --- 2. ORCO  ---
         elif "ORCO" in name_upper or "ORC" in name_upper:
-            SKIN = (85, 107, 47)  # Verde Oliva
-            ARMOR = (50, 50, 50)  # Metallo scuro
+            SKIN = (85, 107, 47)  # Verde 
+            ARMOR = (50, 50, 50)  
             LEATHER = (139, 69, 19)
             
-            # Corpo Grosso
+            # Corpo 
             pygame.draw.ellipse(self.renderer.screen, SKIN, (center_x - 60, center_draw_y - 30, 120, 100))
             
-            # Armatura (Spallaccio chiodato)
+            # Armatura 
             pygame.draw.rect(self.renderer.screen, ARMOR, (center_x - 65, center_draw_y - 35, 40, 30), 0, 5)
             pygame.draw.line(self.renderer.screen, (200, 200, 200), (center_x - 60, center_draw_y - 40), (center_x - 50, center_draw_y - 25), 3) # Chiodo
             
-            # Cinghia toracica
+            # Cinghia 
             pygame.draw.line(self.renderer.screen, LEATHER, (center_x - 50, center_draw_y - 20), (center_x + 40, center_draw_y + 40), 8)
             
-            # Testa (Schiacciata)
+            # Testa 
             pygame.draw.circle(self.renderer.screen, SKIN, (center_x, center_draw_y - 40), 35)
-            # Elmo rudimentale
+            # Elmo 
             pygame.draw.arc(self.renderer.screen, ARMOR, (center_x - 36, center_draw_y - 75, 72, 70), 0, 3.14, 10)
             
-            # Zanne enormi
+            # Zanne 
             pygame.draw.polygon(self.renderer.screen, (240, 240, 220), [(center_x - 20, center_draw_y - 20), (center_x - 20, center_draw_y - 45), (center_x - 10, center_draw_y - 20)])
             pygame.draw.polygon(self.renderer.screen, (240, 240, 220), [(center_x + 20, center_draw_y - 20), (center_x + 20, center_draw_y - 45), (center_x + 10, center_draw_y - 20)])
             
-            # Ascia da Guerra (Mano DX)
+            # Ascia da Guerra 
             pygame.draw.line(self.renderer.screen, (100, 60, 20), (center_x + 50, center_draw_y + 20), (center_x + 50, center_draw_y - 60), 6) # Manico
             pygame.draw.polygon(self.renderer.screen, (100, 100, 100), [(center_x + 50, center_draw_y - 50), (center_x + 80, center_draw_y - 70), (center_x + 80, center_draw_y - 30)]) # Lama
 
-        # --- 3. TROLL (Gigante di Pietra) ---
+        # --- 3. TROLL  ---
         elif "TROLL" in name_upper:
-            SKIN = (100, 110, 120) # Grigio Bluastro
+            SKIN = (100, 110, 120) # Grigio 
             MOSS = (50, 100, 50)   # Muschio
             
-            # Corpo (Roccioso e asimmetrico)
+            # Corpo 
             pygame.draw.rect(self.renderer.screen, SKIN, (center_x - 50, center_draw_y - 30, 100, 110), 0, 20)
             # Muschio sulle spalle
             pygame.draw.circle(self.renderer.screen, MOSS, (center_x - 40, center_draw_y - 20), 15)
             pygame.draw.circle(self.renderer.screen, MOSS, (center_x + 30, center_draw_y - 15), 20)
             
-            # Testa (Gobba)
+            # Testa 
             pygame.draw.rect(self.renderer.screen, SKIN, (center_x - 25, center_draw_y - 60, 50, 50), 0, 10)
             
-            # Cresta Punk
+            # Cresta 
             pygame.draw.polygon(self.renderer.screen, (200, 50, 0), [(center_x, center_draw_y - 80), (center_x - 10, center_draw_y - 60), (center_x + 10, center_draw_y - 60)])
             
             # Faccia
@@ -325,38 +322,38 @@ class UIManager:
             pygame.draw.circle(self.renderer.screen, (255, 255, 255), (center_x - 15, center_draw_y - 50), 4) # Occhio SX
             pygame.draw.circle(self.renderer.screen, (255, 255, 255), (center_x + 15, center_draw_y - 45), 3) # Occhio DX (storto)
             
-            # Clava (Tronco d'albero)
+            # Clava 
             pygame.draw.line(self.renderer.screen, (80, 50, 20), (center_x - 50, center_draw_y + 40), (center_x - 70, center_draw_y - 40), 12)
             pygame.draw.circle(self.renderer.screen, (80, 50, 20), (center_x - 70, center_draw_y - 40), 15) # Testa clava
 
-        # --- 4. GOBLIN (Predone) ---
+        # --- 4. GOBLIN  ---
         elif "GOBLIN" in name_upper:
-            SKIN = (50, 160, 50) # Verde Acceso
+            SKIN = (50, 160, 50) # Verde 
             CLOTH = (100, 70, 50) # Cuoio
             
-            # Orecchie Enormi
+            # Orecchie 
             pygame.draw.polygon(self.renderer.screen, SKIN, [(center_x - 30, center_draw_y - 10), (center_x - 75, center_draw_y - 30), (center_x - 30, center_draw_y + 10)])
             pygame.draw.polygon(self.renderer.screen, SKIN, [(center_x + 30, center_draw_y - 10), (center_x + 75, center_draw_y - 30), (center_x + 30, center_draw_y + 10)])
             
             # Testa
             pygame.draw.circle(self.renderer.screen, SKIN, (center_x, center_draw_y), 40)
             
-            # Bandana Rossa
+            # Bandana
             pygame.draw.rect(self.renderer.screen, (200, 50, 50), (center_x - 38, center_draw_y - 25, 76, 12))
             
-            # Occhi Gialli furbi
+            # Occhi
             pygame.draw.ellipse(self.renderer.screen, (255, 215, 0), (center_x - 20, center_draw_y - 5, 15, 10))
             pygame.draw.ellipse(self.renderer.screen, (255, 215, 0), (center_x + 5, center_draw_y - 5, 15, 10))
             
-            # Sorriso Malvagio
+            # Sorriso 
             pygame.draw.arc(self.renderer.screen, (0, 0, 0), (center_x - 15, center_draw_y + 5, 30, 20), 3.14, 6.28, 3)
-            # Dente che spunta
+            # Dente 
             pygame.draw.polygon(self.renderer.screen, (255, 255, 255), [(center_x + 5, center_draw_y + 20), (center_x + 8, center_draw_y + 15), (center_x + 11, center_draw_y + 20)])
             
-            # Pugnale arrugginito
+            # Pugnale
             pygame.draw.line(self.renderer.screen, (100, 100, 100), (center_x + 40, center_draw_y + 30), (center_x + 60, center_draw_y + 10), 4)
 
-        # --- 5. SCHELETRO (Non-Morto Guerriero) ---
+        # --- 5. SCHELETRO  ---
         elif "SCHELETRO" in name_upper or "SKELETON" in name_upper:
             BONE = (230, 230, 230)
             SHADOW = (20, 20, 20)
@@ -367,92 +364,26 @@ class UIManager:
                 pygame.draw.line(self.renderer.screen, BONE, (center_x - 20, center_draw_y + i), (center_x + 20, center_draw_y + i), 2)
             pygame.draw.line(self.renderer.screen, BONE, (center_x, center_draw_y + 20), (center_x, center_draw_y + 80), 4) # Spina dorsale
             
-            # Testa (Teschio)
+            # Testa (
             pygame.draw.circle(self.renderer.screen, BONE, (center_x, center_draw_y - 20), 35)
             # Mascella
             pygame.draw.rect(self.renderer.screen, BONE, (center_x - 15, center_draw_y + 5, 30, 15))
             
-            # Occhi vuoti
+            # Occhi 
             pygame.draw.circle(self.renderer.screen, SHADOW, (center_x - 12, center_draw_y - 20), 8)
             pygame.draw.circle(self.renderer.screen, SHADOW, (center_x + 12, center_draw_y - 20), 8)
             # Naso
             pygame.draw.polygon(self.renderer.screen, SHADOW, [(center_x, center_draw_y - 5), (center_x - 5, center_draw_y + 5), (center_x + 5, center_draw_y + 5)])
             
-            # Spada antica
+            # Spada 
             pygame.draw.line(self.renderer.screen, (150, 150, 150), (center_x + 40, center_draw_y), (center_x + 40, center_draw_y - 60), 3)
             pygame.draw.line(self.renderer.screen, (100, 80, 50), (center_x + 30, center_draw_y - 15), (center_x + 50, center_draw_y - 15), 4) # Elsa
 
-        # --- 6. SLIME (Gelatina) ---
-        elif "SLIME" in name_upper or "GELATINA" in name_upper:
-            COLOR = (0, 220, 100)
-            LIGHT = (100, 255, 150)
-            
-            # Corpo principale
-            pygame.draw.rect(self.renderer.screen, COLOR, (center_x - 50, center_draw_y, 100, 40), 0, 10) # Base
-            pygame.draw.circle(self.renderer.screen, COLOR, (center_x, center_draw_y), 50) # Cupola
-            
-            # Nucleo (Effetto trasparenza)
-            pygame.draw.circle(self.renderer.screen, (0, 180, 80), (center_x, center_draw_y + 10), 30)
-            
-            # Bolle interne
-            off = (time_val // 100) % 10
-            pygame.draw.circle(self.renderer.screen, LIGHT, (center_x - 20, center_draw_y + off), 5)
-            pygame.draw.circle(self.renderer.screen, LIGHT, (center_x + 10, center_draw_y - 10 - off), 3)
-            
-            # Occhi carini
-            pygame.draw.circle(self.renderer.screen, (255, 255, 255), (center_x - 15, center_draw_y - 15), 10)
-            pygame.draw.circle(self.renderer.screen, (255, 255, 255), (center_x + 15, center_draw_y - 15), 10)
-            pygame.draw.circle(self.renderer.screen, (0, 0, 0), (center_x - 15, center_draw_y - 15), 4)
-            pygame.draw.circle(self.renderer.screen, (0, 0, 0), (center_x + 15, center_draw_y - 15), 4)
-
-        # --- 7. SPETTRO (Fantasma) ---
-        elif "SPETTRO" in name_upper or "FANTASMA" in name_upper or "GHOST" in name_upper:
-            COLOR = (200, 200, 255)
-            # Corpo fluttuante (con oscillazione extra)
-            ghost_y = center_draw_y + float_y
-            
-            # Testa e lenzuolo
-            pygame.draw.circle(self.renderer.screen, COLOR, (center_x, ghost_y - 30), 40)
-            pygame.draw.rect(self.renderer.screen, COLOR, (center_x - 40, ghost_y - 30, 80, 80))
-            
-            # Fondo frastagliato
-            points = [
-                (center_x - 40, ghost_y + 50), (center_x - 20, ghost_y + 70),
-                (center_x, ghost_y + 50), (center_x + 20, ghost_y + 70),
-                (center_x + 40, ghost_y + 50)
-            ]
-            pygame.draw.polygon(self.renderer.screen, COLOR, points)
-            
-            # Faccia urlo
-            pygame.draw.ellipse(self.renderer.screen, (20, 20, 50), (center_x - 15, ghost_y - 35, 10, 15)) # Occhio SX
-            pygame.draw.ellipse(self.renderer.screen, (20, 20, 50), (center_x + 5, ghost_y - 35, 10, 15)) # Occhio DX
-            pygame.draw.ellipse(self.renderer.screen, (20, 20, 50), (center_x - 10, ghost_y - 10, 20, 30)) # Bocca
-
-        # --- 8. PIPISTRELLO ---
-        elif "PIPISTRELLO" in name_upper or "BAT" in name_upper:
-            COLOR = (30, 30, 30)
-            bat_y = center_draw_y + float_y * 2 # Vola veloce
-            
-            # Ali aperte
-            pygame.draw.polygon(self.renderer.screen, COLOR, [(center_x, bat_y), (center_x - 80, bat_y - 50), (center_x - 20, bat_y + 20)])
-            pygame.draw.polygon(self.renderer.screen, COLOR, [(center_x, bat_y), (center_x + 80, bat_y - 50), (center_x + 20, bat_y + 20)])
-            
-            # Corpo
-            pygame.draw.circle(self.renderer.screen, (60, 60, 60), (center_x, bat_y), 15)
-            # Occhi rossi
-            pygame.draw.circle(self.renderer.screen, (255, 0, 0), (center_x - 6, bat_y - 5), 3)
-            pygame.draw.circle(self.renderer.screen, (255, 0, 0), (center_x + 6, bat_y - 5), 3)
-
-        # --- FALLBACK ---
-        else:
-            pygame.draw.rect(self.renderer.screen, (150, 50, 50), (center_x - 40, center_draw_y - 40, 80, 80))
-            pygame.draw.rect(self.renderer.screen, (255, 255, 255), (center_x - 40, center_draw_y - 40, 80, 80), 3)
-            pygame.draw.rect(self.renderer.screen, (0, 0, 0), (center_x - 20, center_draw_y - 10, 10, 10))
-            pygame.draw.rect(self.renderer.screen, (0, 0, 0), (center_x + 10, center_draw_y - 10, 10, 10))
+        
 
     def draw_story_background(self):
         """
-        Disegna lo sfondo per le scene di dialogo (Portale e Colonne).
+        Disegna lo sfondo per le scene di dialogo.
         """
         width = self.renderer.width
         height = self.renderer.height
@@ -461,12 +392,12 @@ class UIManager:
         
         ticks = pygame.time.get_ticks()
         
-        # 1. Sfondo Cosmico (Blu Notte)
+        # 1. Sfondo Cosmico 
         self.renderer.clear((10, 5, 20))
         
-        # 2. IL PORTALE DIMENSIONALE (Centro)
+        # 2. PORTALE
         center_x = width // 2
-        center_y = height // 2 - 50 # Un po' più in alto per lasciare spazio al testo
+        center_y = height // 2 - 50 
         
         # Cerchi pulsanti
         pulse = math.sin(ticks / 500) * 10
@@ -474,33 +405,32 @@ class UIManager:
         pygame.draw.circle(self.renderer.screen, (50, 30, 80), (center_x, center_y), 120 + pulse * 0.8)
         pygame.draw.circle(self.renderer.screen, (20, 10, 30), (center_x, center_y), 90 + pulse * 0.5)
         
-        # Runa Rotante
+        # Runa 
         angle = ticks / 1000
         points = []
         radius = 100
-        for i in range(5): # Pentagono magico
+        for i in range(5): 
             theta = angle + i * (2 * math.pi / 5)
             px = center_x + int(radius * math.cos(theta))
             py = center_y + int(radius * math.sin(theta))
             points.append((px, py))
         pygame.draw.lines(self.renderer.screen, (100, 100, 255), True, points, 2)
         
-        # 3. PARTICELLE FLUTTUANTI (Stelle/Polvere)
-        # Usiamo il tempo per generare posizioni pseudo-casuali che si muovono
+        
         for i in range(20):
-            # Creiamo particelle basate su indici fissi ma mosse dal tempo
+            
             p_seed = i * 100
             p_x = (ticks // 2 + p_seed * 50) % width
-            p_y = (height - (ticks // 5 + p_seed * 20) % height) # Salgono
+            p_y = (height - (ticks // 5 + p_seed * 20) % height)
             
             size = (i % 3) + 1
             alpha = 100 + (i % 10) * 15
-            color = (alpha, alpha, 255) # Azzurrine
+            color = (alpha, alpha, 255)
             
-            if p_y < height - 200: # Non disegnarle sopra il box testo
+            if p_y < height - 200: 
                  pygame.draw.circle(self.renderer.screen, color, (p_x, p_y), size)
 
-        # 4. COLONNE ANTICHE (Ai lati)
+        # 4. COLONNE 
         col_width = 60
         col_color = (40, 40, 50)
         col_detail = (20, 20, 30)
@@ -515,15 +445,15 @@ class UIManager:
         pygame.draw.line(self.renderer.screen, col_detail, (width - 20, 0), (width - 20, height), 2)
         pygame.draw.line(self.renderer.screen, col_detail, (width - 50, 0), (width - 50, height), 2)
         
-        # Capitelli e Basi (Rettangoli decorativi sulle colonne)
+        # Capitelli e Basi 
         for y_dec in range(50, height, 150):
             pygame.draw.rect(self.renderer.screen, (60, 60, 80), (0, y_dec, col_width + 10, 20)) # SX
             pygame.draw.rect(self.renderer.screen, (60, 60, 80), (width - col_width - 10, y_dec, col_width + 10, 20)) # DX
 
-        # 5. BANDE CINEMATOGRAFICHE (Letterbox)
+        
         pygame.draw.rect(self.renderer.screen, (0, 0, 0), (0, 0, width, 60)) # Banda Alta
         
-        # Titolo Scena (Opzionale)
+        # Titolo Scena 
         self.renderer.draw_text("◇ THE LAST DREAM ◇", width // 2, 25, (100, 100, 150), "small", centered=True)
         
 
@@ -537,7 +467,7 @@ class UIManager:
         # --- 1. SFONDO ---
         self.renderer.clear((30, 20, 20)) 
         
-        # --- 2. DISEGNA IL NEMICO (Usa il nuovo metodo intelligente) ---
+        # --- 2. DISEGNA IL NEMICO ---
         enemy_x = width // 2 - 100
         enemy_y = 60
         enemy_size = 180
@@ -556,7 +486,7 @@ class UIManager:
         pygame.draw.rect(self.renderer.screen, Color.RED, (bar_x, bar_y, int(300 * pct), 15))
         self.renderer.draw_text(f"{enemy.hp}/{enemy.max_hp}", width // 2, bar_y + 20, Color.WHITE, "small", centered=True)
 
-        # --- 3. DISEGNA GLI EROI (Uguale a prima) ---
+        # --- 3. DISEGNA GLI EROI  ---
         hero_ground_y = 380 
         num_heroes = len(party.characters)
         spacing = 150 
@@ -567,7 +497,7 @@ class UIManager:
             is_active = (current_turn == char.name)
             self._draw_hero_sprite(hero_x, hero_ground_y, char, is_active)
 
-        # --- 4. PANNELLO STATISTICHE (Uguale a prima) ---
+        # --- 4. PANNELLO STATISTICHE ---
         panel_y = 440
         pygame.draw.rect(self.renderer.screen, (20, 20, 30), (0, panel_y, width, height - panel_y))
         pygame.draw.line(self.renderer.screen, (255, 215, 0), (0, panel_y), (width, panel_y), 3) 
@@ -584,7 +514,7 @@ class UIManager:
             self.draw_stat_bar_labeled(panel_x + 40, panel_y + 50, panel_width - 80, 12, char.hp, char.max_hp, Color.GREEN, "HP")
             self.draw_stat_bar_labeled(panel_x + 40, panel_y + 75, panel_width - 80, 12, char.mp, char.max_mp, Color.BLUE, "MP")
 
-        # --- 5. COMANDI (Footer) ---
+        # --- 5. COMANDI ---
         footer_y = height - 40
         if current_turn and any(c.name == current_turn for c in party.characters):
             cmds = "[1] Attacco  [2] Magia  [3] Cura  [I] Oggetti"
@@ -597,7 +527,7 @@ class UIManager:
         # Etichetta
         self.renderer.draw_text(label, x, y, Color.WHITE, "small")
         
-        # Sfondo barra (grigio scuro)
+        # Sfondo barra 
         bar_x = x + 60
         bar_width = width - 60
         self.renderer.draw_rect(bar_x, y, bar_width, height, (60, 60, 60))
@@ -686,12 +616,12 @@ class UIManager:
     
     def _draw_combat_instructions(self, x: int, y: int):
         """Disegna le istruzioni di combattimento aggiornate"""
-        # Riga 1: Le azioni di combattimento (spostata un po' più in alto: y - 25)
-        # Uso il colore GIALLO per renderle ben visibili
+        # Riga 1: Le azioni di combattimento 
+        
         self.renderer.draw_text("[1] Attacco  [2] Magia  [3] Cura Self  [4] Cura Party", 
                                x, y - 25, Color.YELLOW, "small", centered=True)
         
-        # Riga 2: Istruzioni di sistema (ESC)
+        # Riga 2: Istruzioni di sistema 
         self.renderer.draw_text("ESC: Menu", x, y,
                                Color.GRAY, "small", centered=True)
     
@@ -711,7 +641,7 @@ class UIManager:
         self.renderer.draw_text(f"Posizione: ({position[0]}, {position[1]})", 
                                10, 35, Color.GRAY, "small")
         
-        # Party status (in alto a destra)
+        # Party status 
         self._draw_party_status_compact(width - 320, 10, party)
     
     def _draw_party_status_compact(self, x: int, y: int, party: Party):
@@ -725,10 +655,10 @@ class UIManager:
             # Nome
             self.renderer.draw_text(char.name, x, char_y, Color.WHITE, "small")
             
-            # HP Bar piccola
+            # HP Bar 
             self.renderer.draw_hp_bar(x, char_y + 20, 200, 15, char.hp, char.max_hp)
             
-            # MP Bar piccola
+            # MP Bar 
             self.renderer.draw_mp_bar(x, char_y + 37, 200, 12, char.mp, char.max_mp)
     
     def draw_menu(self, title: str, options: List[str], selected: int = 0):
@@ -743,7 +673,7 @@ class UIManager:
         width = self.renderer.width
         height = self.renderer.height
         
-        # Background semi-trasparente
+        # Background 
         overlay = pygame.Surface((width, height))
         overlay.set_alpha(200)
         overlay.fill(Color.BLACK)
@@ -786,7 +716,7 @@ class UIManager:
         self.renderer.draw_rect(x, y, width, height, Color.DARK_GRAY)
         self.renderer.draw_rect(x, y, width, height, Color.WHITE, filled=False)
         
-        # Messaggio (supporta multi-line)
+        # Messaggio 
         lines = message.split('\n')
         line_height = 25
         start_y = y + (height - len(lines) * line_height) // 2
@@ -804,37 +734,35 @@ class UIManager:
         items = list(inventory.items.values())
         
         # 1. SFONDO
-        self.renderer.clear((15, 15, 20)) # Blu scuro
+        self.renderer.clear((15, 15, 20)) 
         
         # Titolo
         self.renderer.draw_text("INVENTARIO", width // 2, 40, Color.YELLOW, "large", centered=True)
         pygame.draw.line(self.renderer.screen, Color.GRAY, (50, 70), (width-50, 70), 1)
 
-        # Se vuoto
+        
         if not items:
             self.renderer.draw_text("Il tuo zaino è vuoto.", width // 2, height // 2, Color.GRAY, "medium", centered=True)
             self.renderer.draw_text("ESC: Torna al gioco", width // 2, height - 50, Color.WHITE, "small", centered=True)
             return
 
-        # --- LAYOUT A DUE COLONNE ---
-        # Definiamo le aree
+        
         margin = 50
         list_width = 400
         details_x = margin + list_width + 40
         details_width = width - details_x - margin
         start_y = 100
         
-        # 2. COLONNA SINISTRA: LISTA OGGETTI
-        # Box sfondo lista
+        
         pygame.draw.rect(self.renderer.screen, (25, 25, 35), (margin - 10, start_y - 10, list_width + 20, height - 200))
         pygame.draw.rect(self.renderer.screen, (60, 60, 80), (margin - 10, start_y - 10, list_width + 20, height - 200), 1)
         
         for i, item in enumerate(items):
             item_y = start_y + (i * 50)
             
-            # Evidenzia selezione
+            
             if i == selected_index:
-                # Sfondo giallo trasparente (simulato)
+                # Sfondo giallo trasparente 
                 pygame.draw.rect(self.renderer.screen, (50, 50, 100), (margin, item_y, list_width, 40))
                 pygame.draw.rect(self.renderer.screen, Color.YELLOW, (margin, item_y, list_width, 40), 2)
                 text_color = Color.YELLOW
@@ -847,45 +775,45 @@ class UIManager:
             self.renderer.draw_text(f"{prefix}{item.name}", margin + 10, item_y + 10, text_color, "medium")
             self.renderer.draw_text(f"x{item.quantity}", margin + list_width - 50, item_y + 10, Color.GRAY, "medium")
 
-        # 3. COLONNA DESTRA: DETTAGLI OGGETTO SELEZIONATO
+        
         selected_item = items[selected_index]
         
         # Box Dettagli
         pygame.draw.rect(self.renderer.screen, (30, 30, 40), (details_x, start_y, details_width, 300))
         pygame.draw.rect(self.renderer.screen, Color.WHITE, (details_x, start_y, details_width, 300), 2)
         
-        # "Icona" gigante (Simulata con un quadrato colorato in base al tipo)
+        
         icon_size = 80
         icon_x = details_x + 30
         icon_y = start_y + 30
         
-        # Scegli colore in base al nome (versione sicura senza .id)
+        
         name_lower = selected_item.name.lower()
         
         if "vita" in name_lower or "health" in name_lower:
-            icon_color = (200, 50, 50) # Rosso
+            icon_color = (200, 50, 50) 
             symbol = "HP"
         elif "mana" in name_lower:
-            icon_color = (50, 50, 200) # Blu
+            icon_color = (50, 50, 200) 
             symbol = "MP"
         else:
-            icon_color = (150, 150, 150) # Grigio
+            icon_color = (150, 150, 150) 
             symbol = "?"
             
         pygame.draw.rect(self.renderer.screen, icon_color, (icon_x, icon_y, icon_size, icon_size))
         pygame.draw.rect(self.renderer.screen, Color.WHITE, (icon_x, icon_y, icon_size, icon_size), 2)
         self.renderer.draw_text(symbol, icon_x + 25, icon_y + 30, Color.WHITE, "medium")
         
-        # Nome Grande
+        
         self.renderer.draw_text(selected_item.name, icon_x + 100, icon_y + 10, Color.YELLOW, "large")
         self.renderer.draw_text("Oggetto Consumabile", icon_x + 100, icon_y + 50, Color.GRAY, "small")
         
-        # Linea separatrice
+        
         pygame.draw.line(self.renderer.screen, Color.GRAY, (details_x + 20, start_y + 140), (details_x + details_width - 20, start_y + 140), 1)
         
         # Descrizione
         desc_y = start_y + 160
-        # Splitto la descrizione se è troppo lunga (metodo semplice)
+        # Splitto la descrizione se è troppo lunga 
         words = selected_item.description.split()
         line = ""
         for word in words:

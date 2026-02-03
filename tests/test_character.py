@@ -5,7 +5,7 @@ import pytest
 import sys
 import os
 
-# Aggiungi la root del progetto al path
+
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 from models.character import Character

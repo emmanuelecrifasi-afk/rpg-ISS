@@ -24,7 +24,7 @@ class Color:
     PURPLE = (147, 112, 219)
     LIGHT_BLUE = (135, 206, 250)
 
-    # Palette Dungeon (Nuovi)
+    
     FLOOR_1 = (30, 25, 35)      # Pavimento scuro (base)
     FLOOR_2 = (38, 32, 44)      # Pavimento chiaro (scacchiera)
     WALL_TOP = (160, 160, 170)  # Tetto del muro (luce)
@@ -32,7 +32,7 @@ class Color:
     WALL_SHADOW = (40, 40, 50)  # Ombra alla base
     WOOD = (101, 67, 33)        # Legno (Bauli)
     WOOD_LIGHT = (133, 94, 66)  # Legno chiaro
-    GOLD = (255, 215, 0)        # Oro
+    GOLD = (255, 215, 0)        # oro 
 
 
 class Renderer:
@@ -121,19 +121,18 @@ class Renderer:
         
         pygame.draw.rect(self.screen, color, (x, y, size, size))
         
-        # Dettagli casuali (Sassolini/Crepe) fissi in base alle coordinate
-        # Usiamo le coordinate come "seed" per la casualità, così non tremolano
+        
         pseudo_random = (grid_x * grid_y * 13 + grid_x) % 10
         
-        if pseudo_random == 0: # Sassolini
+        if pseudo_random == 0: 
             pygame.draw.circle(self.screen, (50, 50, 60), (x + size//3, y + size//2), 3)
             pygame.draw.circle(self.screen, (50, 50, 60), (x + size//2 + 5, y + size//2 + 5), 2)
-        elif pseudo_random == 1: # Crepa
+        elif pseudo_random == 1: 
             pygame.draw.line(self.screen, (20, 20, 25), (x + 10, y + 10), (x + 20, y + 20), 2)
 
     def draw_wall_tile(self, x, y, size, grid_x, grid_y):
         """Disegna un muro 2.5D con dettagli e torce occasionali"""
-        face_height = int(size * 0.45) # Faccia un po' più alta per stile cartoon
+        face_height = int(size * 0.45) 
         
         # 1. Facciata (Mattoni scuri)
         pygame.draw.rect(self.screen, Color.WALL_FACE, (x, y + size - face_height, size, face_height))
@@ -145,20 +144,19 @@ class Renderer:
         # 2. Tetto (Pietra più chiara)
         pygame.draw.rect(self.screen, Color.WALL_TOP, (x, y, size, size - face_height))
         
-        # 3. Highlight "Cartoon" (Bordo bianco semitrasparente simulato)
+        # 3. Highlight "Cartoon" (Bordo bianco semitrasparente)
         pygame.draw.line(self.screen, (190, 190, 200), (x + 2, y + 2), (x + size - 2, y + 2), 2)
         
         # 4. Ombra netta sotto il tetto (Pop-out effect)
         pygame.draw.rect(self.screen, (30, 30, 40), (x, y + size - face_height, size, 4))
 
         # 5. TORCIA (Solo su alcuni muri, basato su coordinate fisse)
-        # Mette una torcia se le coordinate soddisfano una regola matematica (es. numeri dispari)
         if (grid_x + grid_y * 3) % 5 == 0:
             self.draw_torch(x + size // 2, y + size - face_height + 10)
 
     def draw_chest_tile(self, x, y, size):
         """Disegna un baule del tesoro"""
-        # Sfondo pavimento prima
+        
         pygame.draw.rect(self.screen, Color.FLOOR_1, (x, y, size, size))
         
         margin = 10
@@ -166,11 +164,11 @@ class Renderer:
         chest_h = size - (margin * 2) - 5
         cx, cy = x + margin, y + margin + 5
         
-        # Corpo baule
+        
         pygame.draw.rect(self.screen, Color.WOOD, (cx, cy, chest_w, chest_h))
-        # Bordo Oro
+        
         pygame.draw.rect(self.screen, Color.GOLD, (cx, cy, chest_w, chest_h), 2)
-        # Serratura
+        
         pygame.draw.rect(self.screen, Color.GOLD, (cx + chest_w//2 - 3, cy + chest_h//2 - 3, 6, 8))
 
     def draw_stairs_tile(self, x, y, size, is_exit=True):
@@ -178,26 +176,26 @@ class Renderer:
         color = Color.BLACK if is_exit else Color.FLOOR_2
         pygame.draw.rect(self.screen, color, (x, y, size, size))
         
-        # Disegna quadrati concentrici per simulare la discesa
+        
         steps = 4
         for i in range(steps):
             inset = i * 5
-            c = 50 + (i * 30) # Gradiente di grigio
+            c = 50 + (i * 30) 
             rect = (x + inset, y + inset, size - inset*2, size - inset*2)
             pygame.draw.rect(self.screen, (c, c, c), rect, 2)
     
     def draw_torch(self, x, y):
         """Disegna una torcia animata sul muro"""
-        # Supporto in ferro scuro
+        
         pygame.draw.line(self.screen, (40, 30, 20), (x, y + 5), (x, y + 15), 4)
         
         # Calcola sfarfallio basato sul tempo
         import math
         ticks = pygame.time.get_ticks()
-        flicker_size = math.sin(ticks / 100) * 2     # Pulsazione lenta
-        flicker_pos = math.cos(ticks / 50) * 1       # Tremolio veloce
+        flicker_size = math.sin(ticks / 100) * 2     
+        flicker_pos = math.cos(ticks / 50) * 1       
         
-        # Alone di luce (semitrasparente simulato con cerchi concentrici)
+        # Alone di luce 
         glow_color = (60, 40, 20) # Alone scuro su muro
         pygame.draw.circle(self.screen, glow_color, (x, y), 12 + flicker_size)
         
@@ -209,7 +207,7 @@ class Renderer:
 
     def get_hero_style(self, character_class: str):
         """Restituisce colori e stile in base alla classe del personaggio"""
-        # Normalizza il nome (es. "Warrior" -> "warrior")
+        
         cls = str(character_class).lower()
         
         if "warrior" in cls or "guerriero" in cls:
@@ -226,14 +224,14 @@ class Renderer:
             return (100, 100, 100), (50, 50, 50), "knight"   # Default
         
     def draw_mini_hero(self, x, y, color_body, color_hat, style="knight"):
-        """Disegna un piccolo eroe in stile Chibi (Testa grande)"""
+        """Disegna un piccolo eroe"""
         # Ombra sotto i piedi
         pygame.draw.ellipse(self.screen, (0, 0, 0), (x - 8, y + 8, 16, 6))
         
         # Corpo (piccolo rettangolo)
         pygame.draw.rect(self.screen, color_body, (x - 6, y, 12, 10), 0, 3)
         
-        # Testa (grande cerchio/quadrato arrotondato)
+        # Testa (grande cerchio)
         head_y = y - 10
         pygame.draw.circle(self.screen, (255, 220, 200), (x, head_y), 9) # Pelle
         
@@ -244,13 +242,13 @@ class Renderer:
             pygame.draw.line(self.screen, (50, 50, 50), (x - 9, head_y - 2), (x + 9, head_y - 2), 2)
             # Pennacchio rosso
             pygame.draw.line(self.screen, (220, 20, 20), (x, head_y - 12), (x, head_y - 16), 3)
-        else: # Mago/Rogue
+        else: 
             # Cappuccio
             pygame.draw.polygon(self.screen, color_hat, [
                 (x - 10, head_y), (x + 10, head_y), (x, head_y - 18)
             ])
         
-        # Occhi (due puntini neri carini)
+        # Occhi (due puntini neri)
         eye_y = head_y + 1
         pygame.draw.circle(self.screen, (0, 0, 0), (x - 3, eye_y), 2)
         pygame.draw.circle(self.screen, (0, 0, 0), (x + 3, eye_y), 2)
@@ -258,33 +256,32 @@ class Renderer:
 
     def draw_portal_tile(self, x, y, size):
         """
-        Disegna un portale rosso (vortice) animato al posto del nemico.
+        Disegna un portale rosso.
         """
         # Centro della cella
         cx = x + size // 2
         cy = y + size // 2
         
-        # Gestione tempo per animazione rotazione/pulsazione
+        # Gestione tempo per animazione 
         import math
         ticks = pygame.time.get_ticks()
         
-        # Effetto pulsazione (il portale si allarga e stringe leggermente)
+        # Effetto pulsazione 
         pulse = math.sin(ticks / 200) * 2 
         
-        # 1. Base nera (Il buco nel vuoto)
+        # 1. Base nera 
         pygame.draw.circle(self.screen, (0, 0, 0), (cx, cy), size // 2 - 5)
         
         # 2. Anello esterno Rosso Scuro (Bordo del vortice)
         pygame.draw.circle(self.screen, (139, 0, 0), (cx, cy), size // 2 - 5 + pulse, 3)
         
-        # 3. Spirale interna (Linee che ruotano per simulare il vortice)
-        # Disegniamo 3 archi che ruotano
+        # 3. Spirale interna 
         angle_offset = ticks / 500 # Velocità rotazione
         
         for i in range(3):
-            # Calcola angoli sfasati di 120 gradi (2/3 pigreco)
+            
             start_angle = angle_offset + (i * (2 * math.pi / 3))
-            end_angle = start_angle + math.pi # Arco di 180 gradi
+            end_angle = start_angle + math.pi 
             
             rect_spiral = (cx - 15, cy - 15, 30, 30)
             pygame.draw.arc(self.screen, (255, 50, 50), rect_spiral, start_angle, end_angle, 2)
@@ -293,15 +290,13 @@ class Renderer:
             rect_spiral_out = (cx - 22, cy - 22, 44, 44)
             pygame.draw.arc(self.screen, (100, 0, 0), rect_spiral_out, start_angle - 0.5, end_angle - 0.5, 3)
 
-        # 4. Centro luminoso (Il cuore del pericolo)
+        # 4. Centro luminoso 
         pygame.draw.circle(self.screen, (255, 0, 0), (cx, cy), 4)
 
 
     def draw_world_view(self, world: World, player_pos: Tuple[int, int], party: Party,
                        offset_x: int = 50, offset_y: int = 50):
-        """
-        Versione aggiornata: Mostra i portali al posto dei nemici.
-        """
+        
         px, py = player_pos
         
         # --- 1. DISEGNA LA MAPPA ---
@@ -321,17 +316,17 @@ class Renderer:
                 elif cell_value == CellType.EXIT.value:
                     self.draw_stairs_tile(screen_x, screen_y, self.cell_size)
                 
-                # --- MODIFICA QUI ---
+                
                 elif cell_value == CellType.DANGER.value:
-                    # Invece di draw_mini_enemy, usiamo draw_portal_tile
+                    
                     self.draw_portal_tile(screen_x, screen_y, self.cell_size)
-                # --------------------
+                
 
                 elif cell_value == CellType.START.value:
                      pygame.draw.rect(self.screen, (50, 100, 50), (screen_x + 10, screen_y + 10, self.cell_size - 20, self.cell_size - 20), 0, 5)
                      pygame.draw.rect(self.screen, (80, 150, 80), (screen_x + 10, screen_y + 10, self.cell_size - 20, self.cell_size - 20), 2, 5)
 
-        # --- 2. DISEGNA GLI EROI DEL PARTY (RESTO DEL CODICE INVARIATO) ---
+        # --- 2. DISEGNA GLI EROI DEL PARTY 
         player_screen_x = offset_x + px * self.cell_size
         player_screen_y = offset_y + py * self.cell_size
         center_x = player_screen_x + self.cell_size // 2

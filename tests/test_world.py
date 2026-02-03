@@ -127,11 +127,11 @@ class TestWorld:
         """Test salvataggio e caricamento da file"""
         file_path = tmp_path / "test_map.json"
         
-        # Salva
+        
         sample_world.save_to_file(str(file_path))
         assert file_path.exists()
         
-        # Carica
+        
         loaded_world = World.load_from_file(str(file_path))
         
         assert loaded_world.name == sample_world.name
@@ -150,17 +150,17 @@ class TestWorld:
         
         assert "Test Dungeon" in map_str
         assert "3x3" in map_str
-        assert "S" in map_str  # START
-        assert "#" in map_str  # WALL
-        assert "!" in map_str  # DANGER
-        assert "E" in map_str  # EXIT
+        assert "S" in map_str  
+        assert "#" in map_str  
+        assert "!" in map_str  
+        assert "E" in map_str  
     
     def test_print_map_with_player(self, sample_world):
         """Test stampa mappa con giocatore"""
         player_pos = (1, 1)
         map_str = sample_world.print_map(player_pos)
         
-        assert "@" in map_str  # Simbolo giocatore
+        assert "@" in map_str  
     
     def test_all_cell_types(self):
         """Test tutti i tipi di cella"""
